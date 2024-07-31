@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-const BASE_URL = "http://localhost:5500";
+const BASE_URL = "http://localhost:5080";
 
 const EventsContext = createContext();
 

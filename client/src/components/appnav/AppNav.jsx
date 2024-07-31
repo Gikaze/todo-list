@@ -12,12 +12,6 @@ function AppNav() {
           <li>
             <NavLink to="events">Events</NavLink>
           </li>
-          <li>
-            <NavLink to="map">Map</NavLink>
-          </li>
-          <li>
-            <NavLink to="calendar">Calendar</NavLink>
-          </li>
         </ul>
       </nav>
     </nav>

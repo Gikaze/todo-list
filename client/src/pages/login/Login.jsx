@@ -9,15 +9,16 @@ import styles from "./Login.module.css";
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
 
-  const [email, setEmail] = useState("jack@example.com");
-  const [password, setPassword] = useState("qwerty");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-
-    if (email && password) login(email, password);
+    console.log("Login Button clicked");
+    //console.log(email, password);
+    if (email && password) await login(email, password);
   }
 
   useEffect(
@@ -52,7 +53,7 @@ export default function Login() {
         </div>
 
         <div>
-          <Button type="primary">Login</Button>
+          <Button type="secondary">Login</Button>
         </div>
       </form>
     </main>

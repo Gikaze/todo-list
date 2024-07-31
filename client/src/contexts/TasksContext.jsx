@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-const BASE_URL = "http://localhost:5500";
+const BASE_URL = "http://localhost:5000";
 
 const TasksContext = createContext();
 
@@ -32,7 +32,7 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        tasks: [...state.tasks].filter((task) => task.id !== action.payload),
+        tasks: [...state.tasks].filter((task) => task._id !== action.payload),
         currentTask: {},
       };
     case "rejected":
@@ -107,7 +107,7 @@ function TasksProvider({ children }) {
   async function deleteTask(id) {
     dispatch({ type: "loading" });
     try {
-      await fetch(`${BASE_URL}/cities/${id}`, {
+      await fetch(`${BASE_URL}/tasks/${id}`, {
         method: "DELETE",
       });
 

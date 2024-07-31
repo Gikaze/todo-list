@@ -3,23 +3,21 @@ import Spinner from "./../spinner/Spinner";
 import TaskItem from "./../taskitem/TaskItem";
 import Message from "./../message/Message";
 import styles from "./TaskList.module.css";
-//import { useCities } from "../contexts/CitiesContext";
+import { useTasks } from "./../../contexts/TasksContext";
 
 function TaskList() {
-  //const { cities, isLoading } = useCities();
-  const cities = [];
-  const isLoading = false;
+  const { tasks, isLoading } = useTasks();
+
+  console.log(tasks);
+
   if (isLoading) return <Spinner />;
 
-  if (!cities.length)
-    return (
-      <Message message="Add your first city by clicking on the city on the map" />
-    );
+  if (!tasks.length) return <Message message="Add your first task" />;
 
   return (
-    <ul className={styles.cityList}>
-      {cities.map((city) => (
-        <TaskItem city={city} key={city.id} />
+    <ul className={styles.taskList}>
+      {tasks.map((task) => (
+        <TaskItem task={task} key={task.id} />
       ))}
     </ul>
   );

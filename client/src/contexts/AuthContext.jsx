@@ -1,11 +1,24 @@
-import { createContext, useContext, useReducer } from "react";
 //import axios from "axios";
+import { createContext, useContext, useReducer } from "react";
+
+//import axios from "axios";
+
+const FAKE_USER = {
+  id: "669e5cc27cfc9e9c10a609b6",
+  name: "Gilles",
+  email: "romyjeff@googlemail.com",
+  password: "pass1234",
+  avatar: "https://i.pravatar.cc/100?u=zz",
+};
+
+//const LOGIN_URL = "http://localhost:3000/api/v1/users/login";
 
 const AuthContext = createContext();
 
 const initialState = {
   user: null,
   isAuthenticated: false,
+  error: "",
 };
 
 function reducer(state, action) {
@@ -14,24 +27,48 @@ function reducer(state, action) {
       return { ...state, user: action.payload, isAuthenticated: true };
     case "logout":
       return initialState;
+    case "rejected":
+      return { ...state, isAuthenticated: false, error: action.payload };
     default:
       throw new Error("This action is not covered");
   }
 }
 
-const FAKE_USER = {
-  name: "Jack",
-  email: "jack@example.com",
-  password: "qwerty",
-  avatar: "https://i.pravatar.cc/100?u=zz",
-};
-
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated }, dispatch] = useReducer(
+  const [{ user, isAuthenticated, error }, dispatch] = useReducer(
     reducer,
     initialState,
   );
+
+  /*async function login(email, password) {
+    console.log(email, password);
+
+    try {
+      const res = await axios({
+        method: "POST",
+        url: LOGIN_URL,
+        data: {
+          email,
+          password,
+        },
+      });
+
+      const data = await res.json();
+
+      console.log(data);
+
+      if (res.data.status === "success") {
+        dispatch({ type: "login", payload: data.data });
+      }
+    } catch (err) {
+      dispatch({
+        type: "rejected",
+        payload: `There was an error while logging in: ${err.message}`,
+      });
+    }
+  }
+    */
 
   function login(email, password) {
     if (email === FAKE_USER.email && password === FAKE_USER.password)
@@ -42,38 +79,12 @@ function AuthProvider({ children }) {
     dispatch({ type: "logout" });
   }
 
-  /*
-  useEffect(function(){
-    async function login(email, password) {
-        try {
-            const res = await axios({
-              method: 'POST',
-              url: '/api/v1/users/login',
-              data: {
-                email,
-                password
-              }
-            });
-        
-            if (res.data.status === 'success') {
-              showAlert('success', 'Logged in successfully!');
-              window.setTimeout(() => {
-                location.assign('/');
-              }, 1500);
-            }
-          } catch (err) {
-            showAlert('error', err.response.data.message);
-          }
-    }
-  })
-
-   */
-
   return (
     <AuthContext.Provider
       value={{
         user,
         isAuthenticated,
+        error,
         login,
         logout,
       }}

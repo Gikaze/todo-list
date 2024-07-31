@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Link } from "react-router-dom";
 import styles from "./TaskItem.module.css";
-//import { useCities } from "../contexts/CitiesContext";
+import { useTasks } from "../../contexts/TasksContext";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -10,13 +10,9 @@ const formatDate = (date) =>
     year: "numeric",
   }).format(new Date(date));
 
-const currentCity = { cityName: "", emoji: "", date: "", id: "", position: "" };
-function deleteCity() {}
-
-function TaskItem({ city }) {
-  //const { currentCity, deleteCity } = useCities();
-  city = { cityName: "", emoji: "", date: "", id: "", position: "" };
-  const { cityName, emoji, date, id, position } = city;
+function TaskItem({ task }) {
+  const { currentTask, deleteTask } = useTasks();
+  const { id, title, createdAt } = task;
 
   function handleClick(e) {
     e.preventDefault();
@@ -27,14 +23,13 @@ function TaskItem({ city }) {
   return (
     <li>
       <Link
-        className={`${styles.cityItem} ${
-          id === currentCity.id ? styles["cityItem--active"] : ""
+        className={`${styles.taskItem} ${
+          id === currentTask._id ? styles["taskItem--active"] : ""
         }`}
-        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+        to={id}
       >
-        <span className={styles.emoji}>{emoji}</span>
-        <h3 className={styles.name}>{cityName}</h3>
-        <time className={styles.date}>{formatDate(date)}</time>
+        <h3 className={styles.title}>{title}</h3>
+        <time className={styles.createdAt}>{formatDate(createdAt)}</time>
         <button className={styles.deleteBtn} onClick={handleClick}>
           &times;
         </button>

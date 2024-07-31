@@ -1,9 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
-//import { useCities } from "../contexts/CitiesContext";
 import { useEffect } from "react";
+//import { useCities } from "../contexts/CitiesContext";
 import Button from "./../button/Button";
 import Spinner from "./../spinner/Spinner";
 import styles from "./Task.module.css";
+
+import CustomCheckbox from "react-stylable-checkbox";
+import { useTasks } from "../../contexts/TasksContext";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -16,58 +19,52 @@ const formatDate = (date) =>
 function Task() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const currentCity = {};
-  const isLoading = false;
-  //const { getCity, currentCity, isLoading } = useCities();
+
+  const { getTask, currentTask, isLoading } = useTasks();
 
   // TEMP DATA
-  /*useEffect(
+  useEffect(
     function () {
-      getCity(id);
+      getTask(id);
     },
     [id],
   );
-  */
-  const { cityName, emoji, date, notes } = currentCity;
+
+  const { title, description, completed, createdAt } = currentTask;
 
   if (isLoading) return <Spinner />;
 
   return (
-    <div className={styles.city}>
+    <div className={styles.task}>
       <div className={styles.row}>
-        <h6>City name</h6>
+        <h6>{title}</h6>
         <h3>
-          <span>{emoji}</span> {cityName}
+          <span>{description}</span>
         </h3>
       </div>
 
       <div className={styles.row}>
-        <h6>You went to {cityName} on</h6>
-        <p>{formatDate(date || null)}</p>
+        <p>{formatDate(createdAt || null)}</p>
       </div>
 
-      {notes && (
-        <div className={styles.row}>
-          <h6>Your notes</h6>
-          <p>{notes}</p>
+      <div className={styles.cta}>
+        <div className={styles.buttons}>
+          <Button type="back" onClick={() => navigate(-1)}>
+            &larr; Back
+          </Button>
+          <Button type="primary">Update</Button>
         </div>
-      )}
 
-      <div className={styles.row}>
-        <h6>Learn more</h6>
-        <a
-          href={`https://en.wikipedia.org/wiki/${cityName}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Check out {cityName} on Wikipedia &rarr;
-        </a>
-      </div>
-
-      <div>
-        <Button type="back" onClick={() => navigate(-1)}>
-          &larr; Back
-        </Button>
+        <CustomCheckbox
+          size="30px"
+          checked={completed}
+          sign={"check_white"}
+          color={"#21e8e6"}
+          onClick={(e) => {
+            e.preventDefault();
+            console.log("Check-Button Clicked");
+          }}
+        />
       </div>
     </div>
   );

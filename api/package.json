@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Manage your days",
   "main": "app.js",
+  "proxy": "http://localhost:3000",
   "scripts": {
     "start": "node server.js"
   },

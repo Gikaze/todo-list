@@ -1,0 +1,345 @@
+[{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fb0"
+  },
+  "title": "Weekend Getaway",
+  "description": "A relaxing weekend trip.",
+  "location": "Mountain Resort",
+  "startDate": {
+    "$date": "2024-08-10T00:00:00.000Z"
+  },
+  "startTime": "08:00",
+  "endDate": {
+    "$date": "2024-08-12T00:00:00.000Z"
+  },
+  "endTime": "20:00",
+  "user": {
+    "$oid": "669e6b2504f38b78341d0722"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fb1"
+  },
+  "title": "Yoga Class",
+  "description": "Evening yoga session.",
+  "location": "Yoga Studio",
+  "startDate": {
+    "$date": "2024-08-13T00:00:00.000Z"
+  },
+  "startTime": "18:00",
+  "endDate": {
+    "$date": "2024-08-13T00:00:00.000Z"
+  },
+  "endTime": "19:30",
+  "user": {
+    "$oid": "669e5cc27cfc9e9c10a609b6"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fb2"
+  },
+  "title": "Project Kickoff Meeting",
+  "description": "Initial meeting for the new project.",
+  "location": "Office",
+  "startDate": {
+    "$date": "2024-08-14T00:00:00.000Z"
+  },
+  "startTime": "09:00",
+  "endDate": {
+    "$date": "2024-08-14T00:00:00.000Z"
+  },
+  "endTime": "10:30",
+  "user": {
+    "$oid": "669e6b2504f38b78341d0722"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fb3"
+  },
+  "title": "Webinar",
+  "description": "Online webinar on new technologies.",
+  "location": "Online",
+  "startDate": {
+    "$date": "2024-08-15T00:00:00.000Z"
+  },
+  "startTime": "11:00",
+  "endDate": {
+    "$date": "2024-08-15T00:00:00.000Z"
+  },
+  "endTime": "12:00",
+  "user": {
+    "$oid": "669e5cc27cfc9e9c10a609b6"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fb4"
+  },
+  "title": "Family Gathering",
+  "description": "Family get-together.",
+  "location": "Grandparent's House",
+  "startDate": {
+    "$date": "2024-08-16T00:00:00.000Z"
+  },
+  "startTime": "14:00",
+  "endDate": {
+    "$date": "2024-08-16T00:00:00.000Z"
+  },
+  "endTime": "17:00",
+  "user": {
+    "$oid": "669e6b2504f38b78341d0722"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fb5"
+  },
+  "title": "Book Club Meeting",
+  "description": "Discussing the monthly book.",
+  "location": "Library",
+  "startDate": {
+    "$date": "2024-08-17T00:00:00.000Z"
+  },
+  "startTime": "18:00",
+  "endDate": {
+    "$date": "2024-08-17T00:00:00.000Z"
+  },
+  "endTime": "19:30",
+  "user": {
+    "$oid": "669e5cc27cfc9e9c10a609b6"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fa8"
+  },
+  "title": "Doctor Appointment",
+  "description": "Annual health check-up.",
+  "location": "City Health Clinic",
+  "startDate": {
+    "$date": "2024-08-02T00:00:00.000Z"
+  },
+  "startTime": "09:00",
+  "endDate": {
+    "$date": "2024-08-02T00:00:00.000Z"
+  },
+  "endTime": "09:45",
+  "user": {
+    "$oid": "669e6b2504f38b78341d0722"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fa7"
+  },
+  "title": "Team Meeting",
+  "description": "Quarterly project review meeting with the team.",
+  "location": "Office Conference Room",
+  "startDate": {
+    "$date": "2024-08-01T00:00:00.000Z"
+  },
+  "startTime": "10:00",
+  "endDate": {
+    "$date": "2024-08-01T00:00:00.000Z"
+  },
+  "endTime": "11:30",
+  "user": {
+    "$oid": "669e5cc27cfc9e9c10a609b6"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fa9"
+  },
+  "title": "Business Lunch",
+  "description": "Lunch with potential clients.",
+  "location": "Downtown Bistro",
+  "startDate": {
+    "$date": "2024-08-03T00:00:00.000Z"
+  },
+  "startTime": "12:30",
+  "endDate": {
+    "$date": "2024-08-03T00:00:00.000Z"
+  },
+  "endTime": "14:00",
+  "user": {
+    "$oid": "669e5cc27cfc9e9c10a609b6"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66faa"
+  },
+  "title": "Gym Session",
+  "description": "Cardio and strength training.",
+  "location": "Local Gym",
+  "startDate": {
+    "$date": "2024-08-04T00:00:00.000Z"
+  },
+  "startTime": "17:00",
+  "endDate": {
+    "$date": "2024-08-04T00:00:00.000Z"
+  },
+  "endTime": "18:30",
+  "user": {
+    "$oid": "669e6b2504f38b78341d0722"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fab"
+  },
+  "title": "Conference Call",
+  "description": "Monthly update with the overseas team.",
+  "location": "Home Office",
+  "startDate": {
+    "$date": "2024-08-05T00:00:00.000Z"
+  },
+  "startTime": "20:00",
+  "endDate": {
+    "$date": "2024-08-05T00:00:00.000Z"
+  },
+  "endTime": "21:00",
+  "user": {
+    "$oid": "669e5cc27cfc9e9c10a609b6"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fac"
+  },
+  "title": "Parent-Teacher Meeting",
+  "description": "Discussing the progress of the kids.",
+  "location": "School",
+  "startDate": {
+    "$date": "2024-08-06T00:00:00.000Z"
+  },
+  "startTime": "15:00",
+  "endDate": {
+    "$date": "2024-08-06T00:00:00.000Z"
+  },
+  "endTime": "16:00",
+  "user": {
+    "$oid": "669e6b2504f38b78341d0722"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fad"
+  },
+  "title": "Project Deadline",
+  "description": "Final submission of the project report.",
+  "location": "Office",
+  "startDate": {
+    "$date": "2024-08-07T00:00:00.000Z"
+  },
+  "startTime": "17:00",
+  "endDate": {
+    "$date": "2024-08-07T00:00:00.000Z"
+  },
+  "endTime": "18:00",
+  "user": {
+    "$oid": "669e5cc27cfc9e9c10a609b6"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66fae"
+  },
+  "title": "Dinner with Friends",
+  "description": "Catching up with old friends.",
+  "location": "Friend's House",
+  "startDate": {
+    "$date": "2024-08-08T00:00:00.000Z"
+  },
+  "startTime": "19:00",
+  "endDate": {
+    "$date": "2024-08-08T00:00:00.000Z"
+  },
+  "endTime": "21:00",
+  "user": {
+    "$oid": "669e6b2504f38b78341d0722"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a89059cbf948cb7be66faf"
+  },
+  "title": "Client Presentation",
+  "description": "Presenting the new project proposal.",
+  "location": "Client's Office",
+  "startDate": {
+    "$date": "2024-08-09T00:00:00.000Z"
+  },
+  "startTime": "10:00",
+  "endDate": {
+    "$date": "2024-08-09T00:00:00.000Z"
+  },
+  "endTime": "12:00",
+  "user": {
+    "$oid": "669e5cc27cfc9e9c10a609b6"
+  },
+  "createdAt": {
+    "$date": "2024-07-30T07:03:53.133Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,169 @@
+{
+  "events": [
+    {
+      "id": "66a89059cbf948cb7be66fa7",
+      "title": "Team Meeting",
+      "description": "Quarterly project review meeting with the team.",
+      "location": "Office Conference Room",
+      "startDate": "2024-08-01",
+      "startTime": "10:00",
+      "endDate": "2024-08-01",
+      "endTime": "11:30",
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fa8",
+      "title": "Doctor Appointment",
+      "description": "Annual health check-up.",
+      "location": "City Health Clinic",
+      "startDate": "2024-08-02",
+      "startTime": "09:00",
+      "endDate": "2024-08-02",
+      "endTime": "09:45",
+      "user": "669e6b2504f38b78341d0722"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fa9",
+      "title": "Business Lunch",
+      "description": "Lunch with potential clients.",
+      "location": "Downtown Bistro",
+      "startDate": "2024-08-03",
+      "startTime": "12:30",
+      "endDate": "2024-08-03",
+      "endTime": "14:00",
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "66a89059cbf948cb7be66faa",
+      "title": "Gym Session",
+      "description": "Cardio and strength training.",
+      "location": "Local Gym",
+      "startDate": "2024-08-04",
+      "startTime": "17:00",
+      "endDate": "2024-08-04",
+      "endTime": "18:30",
+      "user": "669e6b2504f38b78341d0722"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fab",
+      "title": "Conference Call",
+      "description": "Monthly update with the overseas team.",
+      "location": "Home Office",
+      "startDate": "2024-08-05",
+      "startTime": "20:00",
+      "endDate": "2024-08-05",
+      "endTime": "21:00",
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fac",
+      "title": "Parent-Teacher Meeting",
+      "description": "Discussing the progress of the kids.",
+      "location": "School",
+      "startDate": "2024-08-06",
+      "startTime": "15:00",
+      "endDate": "2024-08-06",
+      "endTime": "16:00",
+      "user": "669e6b2504f38b78341d0722"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fad",
+      "title": "Project Deadline",
+      "description": "Final submission of the project report.",
+      "location": "Office",
+      "startDate": "2024-08-07",
+      "startTime": "17:00",
+      "endDate": "2024-08-07",
+      "endTime": "18:00",
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fae",
+      "title": "Dinner with Friends",
+      "description": "Catching up with old friends.",
+      "location": "Friend's House",
+      "startDate": "2024-08-08",
+      "startTime": "19:00",
+      "endDate": "2024-08-08",
+      "endTime": "21:00",
+      "user": "669e6b2504f38b78341d0722"
+    },
+    {
+      "id": "66a89059cbf948cb7be66faf",
+      "title": "Client Presentation",
+      "description": "Presenting the new project proposal.",
+      "location": "Client's Office",
+      "startDate": "2024-08-09",
+      "startTime": "10:00",
+      "endDate": "2024-08-09",
+      "endTime": "12:00",
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fb0",
+      "title": "Weekend Getaway",
+      "description": "A relaxing weekend trip.",
+      "location": "Mountain Resort",
+      "startDate": "2024-08-10",
+      "startTime": "08:00",
+      "endDate": "2024-08-12",
+      "endTime": "20:00",
+      "user": "669e6b2504f38b78341d0722"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fb1",
+      "title": "Yoga Class",
+      "description": "Evening yoga session.",
+      "location": "Yoga Studio",
+      "startDate": "2024-08-13",
+      "startTime": "18:00",
+      "endDate": "2024-08-13",
+      "endTime": "19:30",
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fb2",
+      "title": "Project Kickoff Meeting",
+      "description": "Initial meeting for the new project.",
+      "location": "Office",
+      "startDate": "2024-08-14",
+      "startTime": "09:00",
+      "endDate": "2024-08-14",
+      "endTime": "10:30",
+      "user": "669e6b2504f38b78341d0722"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fb3",
+      "title": "Webinar",
+      "description": "Online webinar on new technologies.",
+      "location": "Online",
+      "startDate": "2024-08-15",
+      "startTime": "11:00",
+      "endDate": "2024-08-15",
+      "endTime": "12:00",
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fb4",
+      "title": "Family Gathering",
+      "description": "Family get-together.",
+      "location": "Grandparent's House",
+      "startDate": "2024-08-16",
+      "startTime": "14:00",
+      "endDate": "2024-08-16",
+      "endTime": "17:00",
+      "user": "669e6b2504f38b78341d0722"
+    },
+    {
+      "id": "66a89059cbf948cb7be66fb5",
+      "title": "Book Club Meeting",
+      "description": "Discussing the monthly book.",
+      "location": "Library",
+      "startDate": "2024-08-17",
+      "startTime": "18:00",
+      "endDate": "2024-08-17",
+      "endTime": "19:30",
+      "user": "669e5cc27cfc9e9c10a609b6"
+    }
+  ]
+}

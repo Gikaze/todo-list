@@ -6,14 +6,14 @@ import Task from "./components/task/Task";
 import EventList from "./components/eventlist/EventList";
 import Event from "./components/event/Event";
 import ChatIA from "./components/chatia/ChatIA";
-import MyCalendar from "./components/calendar/Calendar";
-import Map from "./components/map/Map";
 
 import AppLayout from "./pages/layout/AppLayout";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import { AuthProvider } from "./contexts/AuthContext";
+import { EventsProvider } from "./contexts/EventsContext";
+import { TasksProvider } from "./contexts/TasksContext";
 
 function App() {
   return (
@@ -23,13 +23,18 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="login" element={<Login />} />
           <Route path="chatia" element={<ChatIA />} />
-          <Route path="app" element={<AppLayout />}>
+          <Route
+            path="app"
+            element={
+              <TasksProvider>
+                <AppLayout />
+              </TasksProvider>
+            }
+          >
             <Route path="tasks" element={<TaskList />} />
             <Route path="tasks/:id" element={<Task />} />
             <Route path="events" element={<EventList />} />
             <Route path="events/:id" element={<Event />} />
-            <Route path="map" element={<Map />} />
-            <Route path="calendar" element={<MyCalendar />} />
             <Route path="form" element={<Form />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
