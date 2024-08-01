@@ -24,7 +24,7 @@ function TaskItem({ task }) {
     <li>
       <Link
         className={`${styles.taskItem} ${
-          id === currentTask._id ? styles["taskItem--active"] : ""
+          id === currentTask.id ? styles["taskItem--active"] : ""
         }`}
         to={id}
       >

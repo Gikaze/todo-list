@@ -1,3 +1,12 @@
 .chatIA {
-  background-color: darkblue;
+  height: calc(100vh - 5rem);
+  margin: 2.5rem;
+  background-color: var(--color-dark--1);
+  background-size: cover;
+  background-position: center;
+  padding: 2.5rem 5rem;
+}
+
+.chatIA h2 {
+  text-align: center;
 }

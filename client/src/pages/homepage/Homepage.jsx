@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styles from "./Homepage.module.css";
 import PageNav from "./../../components/navbar/PageNav";
 //import { useAuth } from "../contexts/FakeAuthContext";
