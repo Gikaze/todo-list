@@ -1,6 +1,5 @@
 // Importation de Mongoose
 const mongoose = require("mongoose");
-const User = require("./userModel");
 
 // Définition du schéma pour une tâche
 const taskSchema = new mongoose.Schema({
@@ -25,7 +24,7 @@ const taskSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-    required: [true, "Review must belong to a user"],
+    required: [true, "A Task must belong to a user"],
   },
 });
 

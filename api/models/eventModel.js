@@ -11,11 +11,6 @@ const eventSchema = new mongoose.Schema({
     required: [true, "Please give a short description of the event"],
     trim: true,
   },
-  location: {
-    type: String,
-    required: [true, "An Event must have a location"],
-    trim: true,
-  },
   startDate: {
     type: Date,
     required: [true, "An Event must have a startdate"],
@@ -38,6 +33,11 @@ const eventSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: [true, "Event must belong to a user"],
+  },
+  location: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Location",
+    required: [true, "Event must have a location"],
   },
   createdAt: {
     type: Date,

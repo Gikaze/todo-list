@@ -9,6 +9,7 @@ const globalErrorHandler = require("./controllers/errorController");
 const userRouter = require("./routes/userRoutes");
 const taskRouter = require("./routes/taskRoutes");
 const eventRouter = require("./routes/eventRoutes");
+const locationRouter = require("./routes/locationRoutes");
 
 /*const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -52,6 +53,7 @@ app.use(cookieParser());
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/tasks", taskRouter);
 app.use("/api/v1/events", eventRouter);
+app.use("/api/v1/locations", locationRouter);
 
 /*
 app.use("/api/v1/tours", tourRouter);
