@@ -23,18 +23,41 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="login" element={<Login />} />
           <Route path="chatia" element={<ChatIA />} />
-          <Route
-            path="app"
-            element={
-              <TasksProvider>
-                <AppLayout />
-              </TasksProvider>
-            }
-          >
-            <Route path="tasks" element={<TaskList />} />
-            <Route path="tasks/:id" element={<Task />} />
-            <Route path="events" element={<EventList />} />
-            <Route path="events/:id" element={<Event />} />
+          <Route path="app" element={<AppLayout />}>
+            <Route
+              path="tasks"
+              element={
+                <TasksProvider>
+                  <TaskList />
+                </TasksProvider>
+              }
+            />
+            <Route
+              path="tasks/:id"
+              element={
+                <TasksProvider>
+                  <Task />
+                </TasksProvider>
+              }
+            />
+
+            <Route
+              path="events"
+              element={
+                <EventsProvider>
+                  <EventList />
+                </EventsProvider>
+              }
+            />
+            <Route
+              path="events/:id"
+              element={
+                <EventsProvider>
+                  <Event />
+                </EventsProvider>
+              }
+            />
+
             <Route path="form" element={<Form />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />

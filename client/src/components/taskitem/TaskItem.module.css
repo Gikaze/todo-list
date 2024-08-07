@@ -40,20 +40,36 @@
   font-size: 1.5rem;
 }
 
-.deleteBtn {
-  height: 2rem;
+.deleteBtn,
+.updateBtn,
+.checkedBtn {
+  height: 3rem;
   aspect-ratio: 1;
   border-radius: 50%;
   border: none;
   background-color: var(--color-dark--1);
   color: var(--color-light--2);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 400;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.deleteBtn:hover {
+.checkedBtn:hover {
   background-color: var(--color-brand--2);
-  color: var(--color-dark--1);
+  /*color: var(--color-dark--1);*/
+}
+
+.deleteBtn:hover {
+  background-color: var(--color-brand--5);
+  /*color: var(--color-dark--1);*/
+}
+
+.checkedBtn .completed {
+  background-color: var(--color-brand--2);
+}
+
+.updateBtn:hover {
+  background-color: var(--color-brand--1);
+  /*color: var(--color-dark--1);*/
 }

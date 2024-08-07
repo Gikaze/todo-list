@@ -12,12 +12,24 @@ const formatDate = (date) =>
 
 function TaskItem({ task }) {
   const { currentTask, deleteTask } = useTasks();
-  const { id, title, createdAt } = task;
+  const { id, title, createdAt, completed } = task;
 
   function handleClick(e) {
     e.preventDefault();
 
     deleteCity(id);
+  }
+
+  function handleChecked(e) {
+    e.preventDefault();
+  }
+
+  function handleUpdate(e) {
+    e.preventDefault();
+  }
+
+  function handleDelete(e) {
+    e.preventDefault();
   }
 
   return (
@@ -29,8 +41,18 @@ function TaskItem({ task }) {
         to={id}
       >
         <h3 className={styles.title}>{title}</h3>
-        <time className={styles.createdAt}>{formatDate(createdAt)}</time>
-        <button className={styles.deleteBtn} onClick={handleClick}>
+
+        <button
+          className={`${styles.checkedBtn} ${completed ? "completed" : ""}`}
+          onClick={handleChecked}
+        >
+          &#10003;
+        </button>
+        <button className={styles.updateBtn} onClick={handleUpdate}>
+          &#9998;
+        </button>
+
+        <button className={styles.deleteBtn} onClick={handleDelete}>
           &times;
         </button>
       </Link>
