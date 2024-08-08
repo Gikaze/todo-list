@@ -2,10 +2,10 @@
   "tasks": [
     {
       "id": "669e6e657c7c02150e1eca0f",
-      "title": "Acheter du lait",
+      "title": "Acheter du lait.",
       "description": "Acheter du lait et du pain au supermarché.",
       "createdAt": "2024-07-22T14:36:21.671Z",
-      "completed": false,
+      "completed": true,
       "user": "669e5cc27cfc9e9c10a609b6"
     },
     {
@@ -21,7 +21,7 @@
       "title": "Envoyer un email à Jean",
       "description": "Envoyer les documents du projet à Jean.",
       "createdAt": "2024-07-22T14:36:21.671Z",
-      "completed": true,
+      "completed": false,
       "user": "669e5cc27cfc9e9c10a609b6"
     },
     {
@@ -34,10 +34,10 @@
     },
     {
       "id": "669e6e657c7c02150e1eca13",
-      "title": "Lire un livre",
+      "title": "Lire un livre update",
       "description": "Lire le chapitre 4 du livre en cours.",
       "createdAt": "2024-07-22T14:36:21.671Z",
-      "completed": false,
+      "completed": true,
       "user": "669e5cc27cfc9e9c10a609b6"
     },
     {
@@ -85,7 +85,7 @@
       "title": "Planifier les vacances",
       "description": "Rechercher des destinations et réserver les billets.",
       "createdAt": "2024-07-22T14:36:21.671Z",
-      "completed": false,
+      "completed": true,
       "user": "669e5cc27cfc9e9c10a609b6"
     },
     {
@@ -101,7 +101,7 @@
       "title": "Tondre la pelouse",
       "description": "Tondre la pelouse du jardin avant le week-end.",
       "createdAt": "2024-07-22T14:36:21.671Z",
-      "completed": true,
+      "completed": false,
       "user": "669e5cc27cfc9e9c10a609b6"
     },
     {
@@ -117,7 +117,7 @@
       "title": "Faire une sieste",
       "description": "Prendre une sieste de 20 minutes après le déjeuner.",
       "createdAt": "2024-07-22T14:36:21.671Z",
-      "completed": true,
+      "completed": false,
       "user": "669e5cc27cfc9e9c10a609b6"
     }
   ]

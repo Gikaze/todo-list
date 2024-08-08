@@ -11,15 +11,23 @@ import { useNavigate } from "react-router-dom";
 function TaskList() {
   const [userTasks, setUserTasks] = useState([]);
   const { tasks, isLoading } = useTasks();
-  const { user } = useAuth();
+  //const { user } = useAuth();
   const navigate = useNavigate();
+
+  const user = {
+    id: "669e5cc27cfc9e9c10a609b6",
+    name: "Gilles",
+    email: "romyjeff@googlemail.com",
+    password: "pass1234",
+    avatar: "https://i.pravatar.cc/100?u=zz",
+  };
 
   useEffect(
     function () {
-      if (user) setUserTasks(tasks.filter((task) => task.user === user.id));
-      else return navigate("/login");
+      setUserTasks(tasks.filter((task) => task.user === user.id));
+      //else return navigate("/login");
     },
-    [user, tasks],
+    [tasks],
   );
 
   if (isLoading) return <Spinner />;
@@ -29,7 +37,7 @@ function TaskList() {
   return (
     <ul className={styles.taskList}>
       {userTasks.map((task) => (
-        <TaskItem task={task} key={task.id} />
+        <TaskItem task={task} key={task.id} checked={task.completed} />
       ))}
     </ul>
   );

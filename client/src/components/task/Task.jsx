@@ -5,7 +5,6 @@ import Button from "./../button/Button";
 import Spinner from "./../spinner/Spinner";
 import styles from "./Task.module.css";
 
-import CustomCheckbox from "react-stylable-checkbox";
 import { useTasks } from "../../contexts/TasksContext";
 
 const formatDate = (date) =>
@@ -17,10 +16,9 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function Task() {
+  const { getTask, currentTask, completeTask, isLoading } = useTasks();
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const { getTask, currentTask, isLoading } = useTasks();
 
   // TEMP DATA
   useEffect(
@@ -30,7 +28,20 @@ function Task() {
     [id],
   );
 
-  const { title, description, completed, createdAt } = currentTask;
+  async function handleChecked(e) {
+    e.preventDefault();
+    await completeTask(id);
+  }
+
+  function handleUpdate(e) {
+    e.preventDefault();
+  }
+
+  function handleDelete(e) {
+    e.preventDefault();
+  }
+
+  const { title, description, createdAt, completed } = currentTask;
 
   if (isLoading) return <Spinner />;
 
@@ -52,19 +63,23 @@ function Task() {
           <Button type="back" onClick={() => navigate(-1)}>
             &larr; Back
           </Button>
-          <Button type="primary">Update</Button>
         </div>
 
-        <CustomCheckbox
-          size="30px"
-          checked={completed}
-          sign={"check_white"}
-          color={"#21e8e6"}
-          onClick={(e) => {
-            e.preventDefault();
-            console.log("Check-Button Clicked");
-          }}
-        />
+        <div className={styles.cta}>
+          <button
+            className={`${styles.checkedBtn} ${completed ? `${styles.completed}` : ""}`}
+            onClick={handleChecked}
+          >
+            &#10003;
+          </button>
+          <button className={styles.updateBtn} onClick={handleUpdate}>
+            &#9998;
+          </button>
+
+          <button className={styles.deleteBtn} onClick={handleDelete}>
+            &times;
+          </button>
+        </div>
       </div>
     </div>
   );

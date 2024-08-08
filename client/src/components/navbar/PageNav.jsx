@@ -5,7 +5,8 @@ import Button from "./../button/Button";
 import styles from "./PageNav.module.css";
 
 function PageNav() {
-  const { isAuthenticated, logout } = useAuth();
+  const { logout } = useAuth();
+  const isAuthenticated = true;
   return (
     <nav className={styles.nav}>
       <Logo />

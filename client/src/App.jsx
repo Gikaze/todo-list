@@ -6,11 +6,13 @@ import Task from "./components/task/Task";
 import EventList from "./components/eventlist/EventList";
 import Event from "./components/event/Event";
 import ChatIA from "./components/chatia/ChatIA";
+import FormTask from "./components/formTask/FormTask";
 
 import AppLayout from "./pages/layout/AppLayout";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
+
 import { AuthProvider } from "./contexts/AuthContext";
 import { EventsProvider } from "./contexts/EventsContext";
 import { TasksProvider } from "./contexts/TasksContext";
@@ -32,6 +34,7 @@ function App() {
                 </TasksProvider>
               }
             />
+
             <Route
               path="tasks/:id"
               element={
@@ -57,7 +60,14 @@ function App() {
                 </EventsProvider>
               }
             />
-
+            <Route
+              path="tasks/update/:id"
+              element={
+                <TasksProvider>
+                  <FormTask />
+                </TasksProvider>
+              }
+            />
             <Route path="form" element={<Form />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />

@@ -35,6 +35,33 @@ function reducer(state, action) {
         tasks: [...state.tasks].filter((task) => task._id !== action.payload),
         currentTask: {},
       };
+    case "task/completed":
+      return {
+        ...state,
+        isLoading: false,
+        tasks: [...state.tasks].map((task) =>
+          task.id !== action.payload.id
+            ? task
+            : { ...task, completed: action.payload.completed },
+        ),
+      };
+    case "task/updated":
+      return {
+        ...state,
+        isLoading: false,
+        tasks: [...state.tasks].map((task) =>
+          task.id !== action.payload.id
+            ? task
+            : {
+                ...task,
+                title: action.payload.data.title || task.title,
+                description:
+                  action.payload.data.description || task.description,
+                completed: action.payload.data.completed || task.completed,
+              },
+        ),
+      };
+
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
     default:
@@ -109,11 +136,54 @@ function TasksProvider({ children }) {
     try {
       await fetch(`${BASE_URL}/tasks/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       dispatch({
         type: "task/deleted",
         payload: id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function completeTask(id, completed) {
+    dispatch({ type: "loading" });
+    try {
+      await fetch(`${BASE_URL}/tasks/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ completed }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      dispatch({
+        type: "task/completed",
+        payload: { id, completed },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function updateTask(id, data) {
+    dispatch({ type: "loading" });
+    try {
+      await fetch(`${BASE_URL}/tasks/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      dispatch({
+        type: "task/updated",
+        payload: { id, data },
       });
     } catch (err) {
       console.log(err);
@@ -129,7 +199,9 @@ function TasksProvider({ children }) {
         error,
         getTask,
         createTask,
+        completeTask,
         deleteTask,
+        updateTask,
       }}
     >
       {children}

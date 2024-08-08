@@ -1,31 +1,35 @@
 /* eslint-disable */
-import { Link } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import styles from "./TaskItem.module.css";
 import { useTasks } from "../../contexts/TasksContext";
-
-const formatDate = (date) =>
-  new Intl.DateTimeFormat("en", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(date));
+import { useEffect, useState } from "react";
 
 function TaskItem({ task }) {
-  const { currentTask, deleteTask } = useTasks();
-  const { id, title, createdAt, completed } = task;
+  const { currentTask, updateTask, completeTask } = useTasks();
+  const { id } = task;
+  const [title, setTitle] = useState("");
+  const [completed, setCompleted] = useState(false);
+  const navigate = useNavigate();
 
-  function handleClick(e) {
+  useEffect(
+    function () {
+      setTitle(task.title);
+      setCompleted(task.completed);
+    },
+    [task],
+  );
+
+  async function handleCompleted(e) {
     e.preventDefault();
-
-    deleteCity(id);
-  }
-
-  function handleChecked(e) {
-    e.preventDefault();
+    const newCompletedStatus = !completed;
+    setCompleted((checked) => !checked);
+    await completeTask(id, newCompletedStatus);
+    navigate("/app/tasks");
   }
 
   function handleUpdate(e) {
     e.preventDefault();
+    navigate(`update/${id}`);
   }
 
   function handleDelete(e) {
@@ -43,11 +47,12 @@ function TaskItem({ task }) {
         <h3 className={styles.title}>{title}</h3>
 
         <button
-          className={`${styles.checkedBtn} ${completed ? "completed" : ""}`}
-          onClick={handleChecked}
+          className={`${styles.checkedBtn} ${completed ? `${styles.completed}` : ""}`}
+          onClick={handleCompleted}
         >
           &#10003;
         </button>
+
         <button className={styles.updateBtn} onClick={handleUpdate}>
           &#9998;
         </button>

@@ -58,6 +58,45 @@
   color: var(--color-brand--1);
 }
 
+.deleteBtn,
+.updateBtn,
+.checkedBtn {
+  height: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  font-size: 1.8rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.checkedBtn:hover {
+  background-color: var(--color-brand--2);
+  /*color: var(--color-dark--1);*/
+}
+
+.deleteBtn:hover {
+  background-color: var(--color-brand--5);
+  /*color: var(--color-dark--1);*/
+}
+
+.completed {
+  background-color: var(--color-brand--2);
+}
+
+.updateBtn:hover {
+  background-color: var(--color-brand--1);
+  /*color: var(--color-dark--1);*/
+}
+
+.cta {
+  display: flex;
+  gap: 10px;
+}
+
 .task::-webkit-scrollbar {
   width: 0;
 }

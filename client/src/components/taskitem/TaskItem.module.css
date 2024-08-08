@@ -65,7 +65,7 @@
   /*color: var(--color-dark--1);*/
 }
 
-.checkedBtn .completed {
+.completed {
   background-color: var(--color-brand--2);
 }
 

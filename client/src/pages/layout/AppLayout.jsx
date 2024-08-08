@@ -3,7 +3,7 @@ import AppContent from "./../../components/appcontent/AppContent";
 import styles from "./AppLayout.module.css";
 import User from "./../../components/user/User";
 import Map from "./../../components/map/Map";
-import MyCalendar from "./../../components/calendar/Calendar";
+//import MyCalendar from "./../../components/calendar/Calendar";
 
 function AppLayout() {
   return (
