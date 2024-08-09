@@ -26,7 +26,7 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        tasks: [...state.tasks, action.payload],
+        tasks: [action.payload, ...state.tasks],
         currentTask: action.payload,
       };
     case "task/deleted":
@@ -120,7 +120,7 @@ function TasksProvider({ children }) {
         title: data.title,
         description: data.description,
         completed: false,
-        createdAt: Date.now().toString(),
+        createdAt: new Date().toISOString(),
         user: data.user,
       };
       await fetch(`${BASE_URL}/tasks`, {

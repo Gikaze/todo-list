@@ -16,8 +16,10 @@ const FAKE_USER = {
 const AuthContext = createContext();
 
 const initialState = {
-  users: null,
+  users: [],
+  isLoading: false,
   isAuthenticated: false,
+  currentUser: FAKE_USER,
   error: "",
 };
 
@@ -36,7 +38,7 @@ function reducer(state, action) {
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated, error }, dispatch] = useReducer(
+  const [{ user, isAuthenticated, currentUser, error }, dispatch] = useReducer(
     reducer,
     initialState,
   );
@@ -85,6 +87,7 @@ function AuthProvider({ children }) {
         user,
         isAuthenticated,
         error,
+        currentUser,
         login,
         logout,
       }}

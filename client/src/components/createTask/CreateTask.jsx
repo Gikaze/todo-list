@@ -21,8 +21,6 @@ function CreateTask() {
     [currentUser],
   );
 
-  console.log(currentUser);
-
   async function handleSubmit(e) {
     e.preventDefault();
     const data = {
