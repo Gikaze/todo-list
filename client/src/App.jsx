@@ -16,6 +16,8 @@ import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import { AuthProvider } from "./contexts/AuthContext";
 import { EventsProvider } from "./contexts/EventsContext";
 import { TasksProvider } from "./contexts/TasksContext";
+import Delete from "./components/delete/Delete";
+import CreateTask from "./components/createTask/CreateTask";
 
 function App() {
   return (
@@ -31,6 +33,14 @@ function App() {
               element={
                 <TasksProvider>
                   <TaskList />
+                </TasksProvider>
+              }
+            />
+            <Route
+              path="tasks/create"
+              element={
+                <TasksProvider>
+                  <CreateTask />
                 </TasksProvider>
               }
             />
@@ -65,6 +75,14 @@ function App() {
               element={
                 <TasksProvider>
                   <FormTask />
+                </TasksProvider>
+              }
+            />
+            <Route
+              path="tasks/delete/:id"
+              element={
+                <TasksProvider>
+                  <Delete />
                 </TasksProvider>
               }
             />

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 //import { useCities } from "../contexts/CitiesContext";
 import Button from "./../button/Button";
 import Spinner from "./../spinner/Spinner";
@@ -19,8 +19,10 @@ function Task() {
   const { getTask, currentTask, completeTask, isLoading } = useTasks();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [completed, setCompleted] = useState(false);
 
   // TEMP DATA
+
   useEffect(
     function () {
       getTask(id);
@@ -28,20 +30,33 @@ function Task() {
     [id],
   );
 
+  useEffect(
+    function () {
+      if (currentTask) {
+        setCompleted(currentTask.completed);
+      }
+    },
+    [currentTask],
+  );
+
   async function handleChecked(e) {
     e.preventDefault();
-    await completeTask(id);
+    const newCompletedStatus = !completed;
+    setCompleted((checked) => !checked);
+    await completeTask(id, newCompletedStatus);
   }
 
   function handleUpdate(e) {
     e.preventDefault();
+    navigate(`/app/tasks/update/${id}`);
   }
 
   function handleDelete(e) {
     e.preventDefault();
+    navigate(`/app/tasks/delete/${id}`);
   }
 
-  const { title, description, createdAt, completed } = currentTask;
+  const { title, description, createdAt } = currentTask;
 
   if (isLoading) return <Spinner />;
 

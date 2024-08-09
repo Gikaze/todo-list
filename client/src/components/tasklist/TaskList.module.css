@@ -13,3 +13,11 @@
 .taskList::-webkit-scrollbar {
   width: 0;
 }
+
+.buttons {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 10px;
+  margin: 10px 0;
+}

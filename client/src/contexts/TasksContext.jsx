@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const BASE_URL = "http://localhost:5000";
 
@@ -32,7 +33,7 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        tasks: [...state.tasks].filter((task) => task._id !== action.payload),
+        tasks: [...state.tasks].filter((task) => task.id !== action.payload),
         currentTask: {},
       };
     case "task/completed":
@@ -111,18 +112,27 @@ function TasksProvider({ children }) {
     }
   }
 
-  async function createTask(newTask) {
+  async function createTask(data) {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/tasks`, {
+      const newTask = {
+        id: uuidv4(),
+        title: data.title,
+        description: data.description,
+        completed: false,
+        createdAt: Date.now().toString(),
+        user: data.user,
+      };
+      await fetch(`${BASE_URL}/tasks`, {
         method: "POST",
         body: JSON.stringify(newTask),
         headers: {
           "Content-Type": "application/json",
         },
       });
-      const data = await res.json();
-      dispatch({ type: "task/created", payload: data });
+      //const data = await res.json();
+
+      dispatch({ type: "task/created", payload: newTask });
     } catch (err) {
       dispatch({
         type: "rejected",

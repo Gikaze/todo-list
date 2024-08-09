@@ -9,7 +9,7 @@ function FormTask() {
   const navigate = useNavigate();
   const { updateTask } = useTasks();
   const { id } = useParams();
-  const { getTask, currentTask, isLoading } = useTasks();
+  const { getTask, currentTask, completeTask, isLoading } = useTasks();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -29,13 +29,15 @@ function FormTask() {
     if (currentTask) {
       setTitle(currentTask.title || "");
       setDescription(currentTask.description || "");
-      setCompleted(currentTask.completed);
+      setCompleted(currentTask.completed || false);
     }
   }, [currentTask]);
 
-  function handleChecked(e) {
+  async function handleChecked(e) {
     e.preventDefault();
+    const newCompletedStatus = !completed;
     setCompleted((checked) => !checked);
+    await completeTask(id, newCompletedStatus);
   }
 
   async function handleSubmit(e) {
@@ -43,9 +45,10 @@ function FormTask() {
     const data = {
       title: title,
       description: description,
-      completed: completed,
+      completed,
     };
     await updateTask(id, data);
+
     navigate(-1);
   }
 
@@ -73,6 +76,7 @@ function FormTask() {
           value={description}
         />
       </div>
+
       <div className={styles.buttons}>
         <label htmlFor="completed">Completed</label>
         <button
@@ -86,7 +90,7 @@ function FormTask() {
       </div>
 
       <div className={styles.buttons}>
-        <Button type="secondary">Save</Button>
+        <Button type="secondary">save</Button>
         <Button
           onClick={(e) => {
             e.preventDefault();

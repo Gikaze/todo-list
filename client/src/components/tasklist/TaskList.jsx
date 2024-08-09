@@ -7,6 +7,7 @@ import { useTasks } from "./../../contexts/TasksContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../button/Button";
 
 function TaskList() {
   const [userTasks, setUserTasks] = useState([]);
@@ -30,16 +31,28 @@ function TaskList() {
     [tasks],
   );
 
+  async function handleAddNewTask(e) {
+    e.preventDefault();
+    navigate("create");
+  }
+
   if (isLoading) return <Spinner />;
 
   if (!tasks.length) return <Message message="Add your first task" />;
 
   return (
-    <ul className={styles.taskList}>
-      {userTasks.map((task) => (
-        <TaskItem task={task} key={task.id} checked={task.completed} />
-      ))}
-    </ul>
+    <>
+      <div className={styles.buttons}>
+        <Button type="secondary" onClick={handleAddNewTask}>
+          Add
+        </Button>
+      </div>
+      <ul className={styles.taskList}>
+        {userTasks.map((task) => (
+          <TaskItem task={task} key={task.id} />
+        ))}
+      </ul>
+    </>
   );
 }
 

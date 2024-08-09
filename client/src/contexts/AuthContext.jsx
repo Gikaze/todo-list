@@ -16,7 +16,7 @@ const FAKE_USER = {
 const AuthContext = createContext();
 
 const initialState = {
-  user: null,
+  users: null,
   isAuthenticated: false,
   error: "",
 };
