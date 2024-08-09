@@ -54,7 +54,7 @@ function Event() {
     navigate("/app/events");
   }
 
-  if (isLoading || !currentEvent) return <Spinner />;
+  if (isLoading || !location) return <Spinner />;
 
   return (
     <div className={styles.event}>
