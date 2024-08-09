@@ -1,4 +1,4 @@
-.city {
+.event {
   padding: 2rem 3rem;
   max-height: 70%;
   background-color: var(--color-dark--2);
@@ -17,35 +17,78 @@
   gap: 0.5rem;
 }
 
-.city h6 {
+.event h6 {
   text-transform: uppercase;
   font-size: 1.1rem;
   font-weight: 900;
   color: var(--color-light--1);
 }
 
-.city h3 {
+.event h3 {
   font-size: 1.9rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.city h3 span {
+.event h3 span {
   font-size: 3.2rem;
   line-height: 1;
 }
 
-.city p {
+.event p {
   font-size: 1.6rem;
 }
 
-.city a:link,
-.city a:visited {
+.event a:link,
+.event a:visited {
   font-size: 1.6rem;
   color: var(--color-brand--1);
 }
 
-.city::-webkit-scrollbar {
+.deleteBtn,
+.updateBtn,
+.checkedBtn {
+  height: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  font-size: 1.8rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.checkedBtn:hover {
+  background-color: var(--color-brand--2);
+  /*color: var(--color-dark--1);*/
+}
+
+.deleteBtn:hover {
+  background-color: var(--color-brand--5);
+  /*color: var(--color-dark--1);*/
+}
+
+.completed {
+  background-color: var(--color-brand--2);
+}
+
+.updateBtn:hover {
+  background-color: var(--color-brand--1);
+  /*color: var(--color-dark--1);*/
+}
+
+.cta {
+  display: flex;
+  gap: 10px;
+}
+
+.checkedBtn {
+  margin-left: auto;
+}
+
+.event::-webkit-scrollbar {
   width: 0;
 }

@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-//import { useCities } from "../contexts/CitiesContext";
-import Button from "./../button/Button";
-
 import Spinner from "./../spinner/Spinner";
 import styles from "./Event.module.css";
+
+import { useEvents } from "../../contexts/EventsContext";
+import Button from "../button/Button";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -15,58 +15,80 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function Event() {
+  const { getEvent, currentEvent, isLoading } = useEvents();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { getCity, currentCity, isLoading } = useCities();
 
   // TEMP DATA
   useEffect(
     function () {
-      getCity(id);
+      getEvent(id);
     },
     [id],
   );
 
-  const { cityName, emoji, date, notes } = currentCity;
+  const currentDate = new Date().toISOString();
+
+  const {
+    title,
+    description,
+    location,
+    startDate,
+
+    startTime,
+    endTime,
+  } = currentEvent;
+
+  function handleChecked(e) {
+    e.preventDefault();
+    navigate("/app/events");
+  }
+  function handleUpdate(e) {
+    e.preventDefault();
+    navigate("/app/events");
+  }
+  function handleDelete(e) {
+    e.preventDefault();
+    navigate("/app/events");
+  }
 
   if (isLoading) return <Spinner />;
 
   return (
-    <div className={styles.city}>
+    <div className={styles.event}>
       <div className={styles.row}>
-        <h6>City name</h6>
+        <h6>{title}</h6>
         <h3>
-          <span>{emoji}</span> {cityName}
+          <span>{description}</span>
         </h3>
+        <h2>Location: {location}</h2>
       </div>
 
       <div className={styles.row}>
-        <h6>You went to {cityName} on</h6>
-        <p>{formatDate(date || null)}</p>
+        <h3>Start: {startTime}</h3>
+        <h3>End: {endTime}</h3>
+        <p>{formatDate(startDate || null)}</p>
       </div>
 
-      {notes && (
-        <div className={styles.row}>
-          <h6>Your notes</h6>
-          <p>{notes}</p>
+      <div className={styles.cta}>
+        <div className={styles.buttons}>
+          <Button type="back" onClick={() => navigate(-1)}>
+            &larr; Back
+          </Button>
         </div>
-      )}
-
-      <div className={styles.row}>
-        <h6>Learn more</h6>
-        <a
-          href={`https://en.wikipedia.org/wiki/${cityName}`}
-          target="_blank"
-          rel="noreferrer"
+        <button
+          className={`${styles.checkedBtn} ${currentEvent.startDate < currentDate ? `${styles.completed}` : ""}`}
+          onClick={handleChecked}
         >
-          Check out {cityName} on Wikipedia &rarr;
-        </a>
-      </div>
+          &#10003;
+        </button>
+        <button className={styles.updateBtn} onClick={handleUpdate}>
+          &#9998;
+        </button>
 
-      <div>
-        <Button type="back" onClick={() => navigate(-1)}>
-          &larr; Back
-        </Button>
+        <button className={styles.deleteBtn} onClick={handleDelete}>
+          &times;
+        </button>
       </div>
     </div>
   );
