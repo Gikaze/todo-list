@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Link } from "react-router-dom";
 import styles from "./EventItem.module.css";
-//import { useCities } from "../contexts/CitiesContext";
+import { useEvents } from "../../contexts/EventsContext";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -10,31 +10,54 @@ const formatDate = (date) =>
     year: "numeric",
   }).format(new Date(date));
 
-const currentCity = {};
-function deleteCity() {}
+function EventItem({ event }) {
+  const { currentEvent } = useEvents();
+  const { id } = event;
+  const { title, description, location, startDate, startTime, endTime } = event;
 
-function EventItem({ city }) {
-  //const { currentCity, deleteCity } = useCities();
-  const { cityName, emoji, date, id, position } = city;
+  const currentDate = new Date().toISOString();
 
-  function handleClick(e) {
+  function handleCompleted(e) {
     e.preventDefault();
+  }
 
-    deleteCity(id);
+  function handleUpdate(e) {
+    e.preventDefault();
+  }
+
+  function handleDelete(e) {
+    e.preventDefault();
   }
 
   return (
     <li>
       <Link
-        className={`${styles.cityItem} ${
-          id === currentCity.id ? styles["cityItem--active"] : ""
+        className={`${styles.eventItem} ${
+          event.id === currentEvent.id ? styles["eventItem--active"] : ""
         }`}
-        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+        to={id}
       >
-        <span className={styles.emoji}>{emoji}</span>
-        <h3 className={styles.name}>{cityName}</h3>
-        <time className={styles.date}>{formatDate(date)}</time>
-        <button className={styles.deleteBtn} onClick={handleClick}>
+        <div className={styles.row}>
+          <h3>
+            {title} - {formatDate(startDate || null)}
+          </h3>
+          <h2>{description}</h2>
+          <h3>
+            <span>Location: {location}</span>
+          </h3>
+        </div>
+
+        <button
+          className={`${styles.checkedBtn} ${event.startDate < currentDate ? `${styles.completed}` : ""}`}
+          onClick={handleCompleted}
+        >
+          &#10003;
+        </button>
+        <button className={styles.updateBtn} onClick={handleUpdate}>
+          &#9998;
+        </button>
+
+        <button className={styles.deleteBtn} onClick={handleDelete}>
           &times;
         </button>
       </Link>

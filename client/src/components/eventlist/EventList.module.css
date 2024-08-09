@@ -1,16 +1,23 @@
-.countryList {
+.eventList {
   width: 100%;
   height: 65vh;
   list-style: none;
-  overflow-y: hidden;
+  overflow-y: scroll;
   overflow-x: hidden;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-content: start;
-  gap: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
 }
 
-.countryList::-webkit-scrollbar {
+.eventList::-webkit-scrollbar {
   width: 0;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 10px;
+  margin: 10px 0;
 }

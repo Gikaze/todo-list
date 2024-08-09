@@ -49,14 +49,6 @@
       "user": "669e6b2504f38b78341d0722"
     },
     {
-      "id": "669e6e657c7c02150e1eca15",
-      "title": "Préparer le dîner",
-      "description": "Cuisiner un repas sain pour la famille.",
-      "completed": false,
-      "createdAt": "2024-07-22T14:36:21.671Z",
-      "user": "669e5cc27cfc9e9c10a609b6"
-    },
-    {
       "id": "669e6e657c7c02150e1eca16",
       "title": "Faire les courses",
       "description": "Acheter des légumes et des fruits au marché.",
@@ -79,14 +71,6 @@
       "completed": true,
       "createdAt": "2024-07-22T14:36:21.671Z",
       "user": "669e6b2504f38b78341d0722"
-    },
-    {
-      "id": "669e6e657c7c02150e1eca19",
-      "title": "Planifier les vacances",
-      "description": "Rechercher des destinations et réserver les billets.",
-      "completed": false,
-      "createdAt": "2024-07-22T14:36:21.671Z",
-      "user": "669e5cc27cfc9e9c10a609b6"
     },
     {
       "id": "669e6e657c7c02150e1eca1a",
@@ -126,14 +110,6 @@
       "description": "test description",
       "completed": false,
       "createdAt": "1723209077438"
-    },
-    {
-      "id": "e3787938-87d0-47c7-9416-6dd10b08c666",
-      "title": "Finir mon App",
-      "description": "Completer mon App sur le Front et le Backend",
-      "completed": false,
-      "createdAt": "2024-08-09T14:02:26.518Z",
-      "user": "669e5cc27cfc9e9c10a609b6"
     }
   ]
 }

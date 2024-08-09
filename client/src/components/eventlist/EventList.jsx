@@ -3,36 +3,58 @@ import Spinner from "./../spinner/Spinner";
 import TaskItem from "./../taskitem/TaskItem";
 import Message from "./../message/Message";
 import EventItem from "./../eventitem/EventItem";
+
+import { useAuth } from "../../contexts/AuthContext";
+import { useEvents } from "../../contexts/EventsContext";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../button/Button";
 import styles from "./EventList.module.css";
 //import { useCities } from "../contexts/CitiesContext";
 
 function EventList() {
-  //const { cities, isLoading } = useCities();
+  const [userEvents, setUserEvents] = useState([]);
+  const { events, isLoading } = useEvents();
+  //const { user } = useAuth();
+  const navigate = useNavigate();
 
-  const cities = [];
-  const isLoading = false;
+  const user = {
+    id: "669e5cc27cfc9e9c10a609b6",
+    name: "Gilles",
+    email: "romyjeff@googlemail.com",
+    password: "pass1234",
+    avatar: "https://i.pravatar.cc/100?u=zz",
+  };
+
+  useEffect(
+    function () {
+      setUserEvents(events.filter((event) => event.user === user.id));
+      //else return navigate("/login");
+    },
+    [events],
+  );
+
+  async function handleAddNewEvent(e) {
+    e.preventDefault();
+  }
+
   if (isLoading) return <Spinner />;
 
-  if (!cities.length)
-    return (
-      <Message message="Add your first city by clicking on the city on the map" />
-    );
-
-  const countries = cities.reduce((arr, city) => {
-    if (!arr.map((el) => el.country).includes(city.country))
-      return [
-        ...arr,
-        { country: city.country, emoji: city.emojy, id: city.id },
-      ];
-    else return arr;
-  }, []);
+  if (!events.length) return <Message message="Add your first task" />;
 
   return (
-    <ul className={styles.countryList}>
-      {countries.map((country) => (
-        <CountryItem country={country} key={country.id} />
-      ))}
-    </ul>
+    <>
+      <div className={styles.buttons}>
+        <Button type="primary" onClick={handleAddNewEvent}>
+          Add
+        </Button>
+      </div>
+      <ul className={styles.eventList}>
+        {userEvents.map((event) => (
+          <EventItem event={event} key={event.id} />
+        ))}
+      </ul>
+    </>
   );
 }
 

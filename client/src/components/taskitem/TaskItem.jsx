@@ -5,7 +5,7 @@ import { useTasks } from "../../contexts/TasksContext";
 import { useEffect, useState } from "react";
 
 function TaskItem({ task }) {
-  const { currentTask, deleteTask, completeTask } = useTasks();
+  const { currentTask, completeTask } = useTasks();
   const { id } = task;
   const [title, setTitle] = useState("");
   const [completed, setCompleted] = useState(false);

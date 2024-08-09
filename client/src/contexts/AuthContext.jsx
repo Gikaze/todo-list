@@ -38,7 +38,7 @@ function reducer(state, action) {
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated, currentUser, error }, dispatch] = useReducer(
+  const [{ users, isAuthenticated, currentUser, error }, dispatch] = useReducer(
     reducer,
     initialState,
   );
@@ -84,7 +84,7 @@ function AuthProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{
-        user,
+        users,
         isAuthenticated,
         error,
         currentUser,
