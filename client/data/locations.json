@@ -1,0 +1,107 @@
+[
+  {
+    "address": "1600 Amphitheatre Parkway",
+    "city": "Mountain View",
+    "country": "USA",
+    "flag": "🇺🇸",
+    "coordinates": [37.422, -122.0841]
+  },
+  {
+    "address": "1 Infinite Loop",
+    "city": "Cupertino",
+    "country": "USA",
+    "flag": "🇺🇸",
+    "coordinates": [37.3318, -122.0312]
+  },
+  {
+    "address": "Potsdamer Platz",
+    "city": "Berlin",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "coordinates": [52.5096, 13.3756]
+  },
+  {
+    "address": "221B Baker Street",
+    "city": "London",
+    "country": "UK",
+    "flag": "🇬🇧",
+    "coordinates": [51.5237, -0.1586]
+  },
+  {
+    "address": "Eiffel Tower",
+    "city": "Paris",
+    "country": "France",
+    "flag": "🇫🇷",
+    "coordinates": [48.8584, 2.2945]
+  },
+  {
+    "address": "Taj Mahal",
+    "city": "Agra",
+    "country": "India",
+    "flag": "🇮🇳",
+    "coordinates": [27.1751, 78.0421]
+  },
+  {
+    "address": "Sydney Opera House",
+    "city": "Sydney",
+    "country": "Australia",
+    "flag": "🇦🇺",
+    "coordinates": [-33.8568, 151.2153]
+  },
+  {
+    "address": "Red Square",
+    "city": "Moscow",
+    "country": "Russia",
+    "flag": "🇷🇺",
+    "coordinates": [55.7539, 37.6208]
+  },
+  {
+    "address": "Great Wall of China",
+    "city": "Beijing",
+    "country": "China",
+    "flag": "🇨🇳",
+    "coordinates": [40.4319, 116.5704]
+  },
+  {
+    "address": "Christ the Redeemer",
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
+    "flag": "🇧🇷",
+    "coordinates": [-22.9519, -43.2105]
+  },
+  {
+    "address": "Table Mountain",
+    "city": "Cape Town",
+    "country": "South Africa",
+    "flag": "🇿🇦",
+    "coordinates": [-33.9628, 18.4098]
+  },
+  {
+    "address": "Colosseum",
+    "city": "Rome",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "coordinates": [41.8902, 12.4922]
+  },
+  {
+    "address": "Empire State Building",
+    "city": "New York",
+    "country": "USA",
+    "flag": "🇺🇸",
+    "coordinates": [40.7488, -73.9857]
+  },
+  {
+    "address": "Sagrada Familia",
+    "city": "Barcelona",
+    "country": "Spain",
+    "flag": "🇪🇸",
+    "coordinates": [41.4036, 2.1744]
+  },
+  {
+    "address": "Burj Khalifa",
+    "city": "Dubai",
+    "country": "UAE",
+    "flag": "🇦🇪",
+    "coordinates": [25.1972, 55.2744]
+  }
+]

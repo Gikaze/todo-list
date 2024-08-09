@@ -39,6 +39,8 @@ function Event() {
     endTime,
   } = currentEvent;
 
+  console.log(currentEvent);
+
   function handleChecked(e) {
     e.preventDefault();
     navigate("/app/events");
@@ -52,7 +54,7 @@ function Event() {
     navigate("/app/events");
   }
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || !currentEvent) return <Spinner />;
 
   return (
     <div className={styles.event}>
@@ -61,7 +63,15 @@ function Event() {
         <h3>
           <span>{description}</span>
         </h3>
-        <h2>Location: {location}</h2>
+        <h2>Location</h2>
+        <p>Address: {location.address}</p>
+        <p>City: {location.city}</p>
+        <p className={styles.country}>
+          <span>Country:</span>
+          <span>
+            {location.country} {"   "} {location.flag}
+          </span>
+        </p>
       </div>
 
       <div className={styles.row}>

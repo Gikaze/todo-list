@@ -89,6 +89,12 @@
   margin-left: auto;
 }
 
+.country {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .event::-webkit-scrollbar {
   width: 0;
 }

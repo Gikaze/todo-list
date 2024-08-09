@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import styles from "./EventItem.module.css";
 import { useEvents } from "../../contexts/EventsContext";
 
+function convertToEmoji(countryCode) {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split("")
+    .map((char) => 127397 + char.charCodeAt());
+  return String.fromCodePoint(...codePoints);
+}
+
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -42,9 +50,17 @@ function EventItem({ event }) {
             {title} - {formatDate(startDate || null)}
           </h3>
           <h2>{description}</h2>
-          <h3>
-            <span>Location: {location}</span>
-          </h3>
+          <div>
+            <p>Location</p>
+            <p>Address: {location.address}</p>
+            <p>City: {location.city}</p>
+            <p className={styles.country}>
+              <span>Country:</span>
+              <span>
+                {location.country} {location.flag}
+              </span>
+            </p>
+          </div>
         </div>
 
         <button

@@ -75,6 +75,11 @@
   background-color: var(--color-brand--1);
 }
 
+.country {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .updateBtn:hover {
   background-color: var(--color-brand--2);
   /*color: var(--color-dark--1);*/
