@@ -43,7 +43,7 @@ function EventItem({ event }) {
         className={`${styles.eventItem} ${
           event.id === currentEvent.id ? styles["eventItem--active"] : ""
         }`}
-        to={id}
+        to={`${id}?lat=${event.location.coordinates.at(0)}&lng=${event.location.coordinates.at(1)}`}
       >
         <div className={styles.row}>
           <h3>

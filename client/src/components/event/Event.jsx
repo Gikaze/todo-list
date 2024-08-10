@@ -39,8 +39,6 @@ function Event() {
     endTime,
   } = currentEvent;
 
-  console.log(currentEvent);
-
   function handleChecked(e) {
     e.preventDefault();
     navigate("/app/events");
