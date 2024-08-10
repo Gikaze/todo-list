@@ -25,8 +25,27 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        tasks: [...state.events, action.payload],
+        events: [...state.events, action.payload],
         currentEvent: action.payload,
+      };
+    case "event/updated":
+      return {
+        ...state,
+        isLoading: false,
+        events: [...state.events].map((event) =>
+          event.id !== action.payload.id
+            ? event
+            : {
+                ...event,
+                title: action.payload.data.title || event.title,
+                description:
+                  action.payload.data.description || event.description,
+                startDate: action.payload.data.startDate || event.startDate,
+                endDate: action.payload.data.endDate || event.endDate,
+                startTime: action.payload.data.startTime || event.startTime,
+                endTime: action.payload.data.endTime || event.endTime,
+              },
+        ),
       };
     case "event/deleted":
       return {
@@ -122,6 +141,26 @@ function EventsProvider({ children }) {
     }
   }
 
+  async function updateEvent(id, data) {
+    dispatch({ type: "loading" });
+    try {
+      await fetch(`${BASE_URL}/events/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      dispatch({
+        type: "event/updated",
+        payload: { id, data },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <EventsContext.Provider
       value={{
@@ -132,6 +171,7 @@ function EventsProvider({ children }) {
         getEvent,
         createEvent,
         deleteEvent,
+        updateEvent,
       }}
     >
       {children}

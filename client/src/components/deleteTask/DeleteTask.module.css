@@ -1,0 +1,43 @@
+.delete {
+  padding: 2rem 3rem;
+  max-height: 70%;
+  background-color: var(--color-dark--2);
+  border-radius: 7px;
+  /*overflow: scroll;*/
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.delete h6 {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--color-light--1);
+}
+
+.delete h3 {
+  font-size: 1.9rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.delete h3 span {
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

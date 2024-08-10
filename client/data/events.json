@@ -1,23 +1,6 @@
 {
   "events": [
     {
-      "id": "66a89059cbf948cb7be66fa7",
-      "title": "Team Meeting",
-      "description": "Quarterly project review meeting with the team.",
-      "location": {
-        "address": "1600 Amphitheatre Parkway",
-        "city": "Mountain View",
-        "country": "USA",
-        "flag": "🇺🇸",
-        "coordinates": [37.422, -122.0841]
-      },
-      "startDate": "2024-08-01",
-      "startTime": "10:00",
-      "endDate": "2024-08-01",
-      "endTime": "11:30",
-      "user": "669e5cc27cfc9e9c10a609b6"
-    },
-    {
       "id": "66a89059cbf948cb7be66fa8",
       "title": "Doctor Appointment",
       "description": "Annual health check-up.",
@@ -26,7 +9,10 @@
         "city": "Cupertino",
         "country": "USA",
         "flag": "🇺🇸",
-        "coordinates": [37.3318, -122.0312]
+        "coordinates": [
+          37.3318,
+          -122.0312
+        ]
       },
       "startDate": "2024-08-02",
       "startTime": "09:00",
@@ -43,7 +29,10 @@
         "city": "Berlin",
         "country": "Germany",
         "flag": "🇩🇪",
-        "coordinates": [52.5096, 13.3756]
+        "coordinates": [
+          52.5096,
+          13.3756
+        ]
       },
       "startDate": "2024-08-03",
       "startTime": "12:30",
@@ -60,7 +49,10 @@
         "city": "London",
         "country": "UK",
         "flag": "🇬🇧",
-        "coordinates": [51.5237, -0.1586]
+        "coordinates": [
+          51.5237,
+          -0.1586
+        ]
       },
       "startDate": "2024-08-04",
       "startTime": "17:00",
@@ -70,14 +62,17 @@
     },
     {
       "id": "66a89059cbf948cb7be66fab",
-      "title": "Conference Call",
+      "title": "Conference Call.",
       "description": "Monthly update with the overseas team.",
       "location": {
         "address": "Eiffel Tower",
         "city": "Paris",
         "country": "France",
         "flag": "🇫🇷",
-        "coordinates": [48.8584, 2.2945]
+        "coordinates": [
+          48.8584,
+          2.2945
+        ]
       },
       "startDate": "2024-08-05",
       "startTime": "20:00",
@@ -94,7 +89,10 @@
         "city": "Agra",
         "country": "India",
         "flag": "🇮🇳",
-        "coordinates": [27.1751, 78.0421]
+        "coordinates": [
+          27.1751,
+          78.0421
+        ]
       },
       "startDate": "2024-08-06",
       "startTime": "15:00",
@@ -111,7 +109,10 @@
         "city": "Sydney",
         "country": "Australia",
         "flag": "🇦🇺",
-        "coordinates": [-33.8568, 151.2153]
+        "coordinates": [
+          -33.8568,
+          151.2153
+        ]
       },
       "startDate": "2024-08-07",
       "startTime": "17:00",
@@ -128,30 +129,16 @@
         "city": "Moscow",
         "country": "Russia",
         "flag": "🇷🇺",
-        "coordinates": [55.7539, 37.6208]
+        "coordinates": [
+          55.7539,
+          37.6208
+        ]
       },
       "startDate": "2024-08-08",
       "startTime": "19:00",
       "endDate": "2024-08-08",
       "endTime": "21:00",
       "user": "669e6b2504f38b78341d0722"
-    },
-    {
-      "id": "66a89059cbf948cb7be66faf",
-      "title": "Client Presentation",
-      "description": "Presenting the new project proposal.",
-      "location": {
-        "address": "Great Wall of China",
-        "city": "Beijing",
-        "country": "China",
-        "flag": "🇨🇳",
-        "coordinates": [40.4319, 116.5704]
-      },
-      "startDate": "2024-08-09",
-      "startTime": "10:00",
-      "endDate": "2024-08-09",
-      "endTime": "12:00",
-      "user": "669e5cc27cfc9e9c10a609b6"
     },
     {
       "id": "66a89059cbf948cb7be66fb0",
@@ -162,7 +149,10 @@
         "city": "Rio de Janeiro",
         "country": "Brazil",
         "flag": "🇧🇷",
-        "coordinates": [-22.9519, -43.2105]
+        "coordinates": [
+          -22.9519,
+          -43.2105
+        ]
       },
       "startDate": "2024-08-10",
       "startTime": "08:00",
@@ -179,7 +169,10 @@
         "city": "Cape Town",
         "country": "South Africa",
         "flag": "🇿🇦",
-        "coordinates": [-33.9628, 18.4098]
+        "coordinates": [
+          -33.9628,
+          18.4098
+        ]
       },
       "startDate": "2024-08-13",
       "startTime": "18:00",
@@ -196,7 +189,10 @@
         "city": "Rome",
         "country": "Italy",
         "flag": "🇮🇹",
-        "coordinates": [41.8902, 12.4922]
+        "coordinates": [
+          41.8902,
+          12.4922
+        ]
       },
       "startDate": "2024-08-14",
       "startTime": "09:00",
@@ -213,7 +209,10 @@
         "city": "New York",
         "country": "USA",
         "flag": "🇺🇸",
-        "coordinates": [40.7488, -73.9857]
+        "coordinates": [
+          40.7488,
+          -73.9857
+        ]
       },
       "startDate": "2024-08-15",
       "startTime": "11:00",
@@ -230,30 +229,16 @@
         "city": "Barcelona",
         "country": "Spain",
         "flag": "🇪🇸",
-        "coordinates": [41.4036, 2.1744]
+        "coordinates": [
+          41.4036,
+          2.1744
+        ]
       },
       "startDate": "2024-08-16",
       "startTime": "14:00",
       "endDate": "2024-08-16",
       "endTime": "17:00",
       "user": "669e6b2504f38b78341d0722"
-    },
-    {
-      "id": "66a89059cbf948cb7be66fb5",
-      "title": "Book Club Meeting",
-      "description": "Discussing the monthly book.",
-      "location": {
-        "address": "Burj Khalifa",
-        "city": "Dubai",
-        "country": "UAE",
-        "flag": "🇦🇪",
-        "coordinates": [25.1972, 55.2744]
-      },
-      "startDate": "2024-08-17",
-      "startTime": "18:00",
-      "endDate": "2024-08-17",
-      "endTime": "19:30",
-      "user": "669e5cc27cfc9e9c10a609b6"
     }
   ]
 }

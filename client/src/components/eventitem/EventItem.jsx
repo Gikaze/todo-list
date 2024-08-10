@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./EventItem.module.css";
 import { useEvents } from "../../contexts/EventsContext";
 
@@ -21,6 +21,7 @@ const formatDate = (date) =>
 function EventItem({ event }) {
   const { currentEvent } = useEvents();
   const { id } = event;
+  const navigate = useNavigate();
   const { title, description, location, startDate, startTime, endTime } = event;
 
   const currentDate = new Date().toISOString();
@@ -31,10 +32,12 @@ function EventItem({ event }) {
 
   function handleUpdate(e) {
     e.preventDefault();
+    navigate(`update/${id}`);
   }
 
   function handleDelete(e) {
     e.preventDefault();
+    navigate(`delete/${id}`);
   }
 
   return (

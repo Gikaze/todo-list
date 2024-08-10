@@ -45,11 +45,11 @@ function Event() {
   }
   function handleUpdate(e) {
     e.preventDefault();
-    navigate("/app/events");
+    navigate(`/app/events/update/${id}`);
   }
   function handleDelete(e) {
     e.preventDefault();
-    navigate("/app/events");
+    navigate(`/app/events/delete/${id}`);
   }
 
   if (isLoading || !location) return <Spinner />;

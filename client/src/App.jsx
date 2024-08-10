@@ -1,5 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { AuthProvider } from "./contexts/AuthContext";
+import { EventsProvider } from "./contexts/EventsContext";
+import { TasksProvider } from "./contexts/TasksContext";
+
+import AppLayout from "./pages/layout/AppLayout";
+import Homepage from "./pages/homepage/Homepage";
+import Login from "./pages/login/Login";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
+
 import Form from "./components/form/Form";
 import TaskList from "./components/tasklist/TaskList";
 import Task from "./components/task/Task";
@@ -7,17 +16,10 @@ import EventList from "./components/eventlist/EventList";
 import Event from "./components/event/Event";
 import ChatIA from "./components/chatia/ChatIA";
 import FormTask from "./components/formTask/FormTask";
-
-import AppLayout from "./pages/layout/AppLayout";
-import Homepage from "./pages/homepage/Homepage";
-import Login from "./pages/login/Login";
-import PageNotFound from "./pages/pageNotFound/PageNotFound";
-
-import { AuthProvider } from "./contexts/AuthContext";
-import { EventsProvider } from "./contexts/EventsContext";
-import { TasksProvider } from "./contexts/TasksContext";
-import Delete from "./components/delete/Delete";
 import CreateTask from "./components/createTask/CreateTask";
+import FormEvent from "./components/formEvent/FormEvent";
+import DeleteTask from "./components/deleteTask/DeleteTask";
+import DeleteEvent from "./components/deleteEvent/DeleteEvent";
 
 function App() {
   return (
@@ -53,7 +55,22 @@ function App() {
                 </TasksProvider>
               }
             />
-
+            <Route
+              path="tasks/update/:id"
+              element={
+                <TasksProvider>
+                  <FormTask />
+                </TasksProvider>
+              }
+            />
+            <Route
+              path="tasks/delete/:id"
+              element={
+                <TasksProvider>
+                  <DeleteTask />
+                </TasksProvider>
+              }
+            />
             <Route
               path="events"
               element={
@@ -71,19 +88,19 @@ function App() {
               }
             />
             <Route
-              path="tasks/update/:id"
+              path="events/update/:id"
               element={
-                <TasksProvider>
-                  <FormTask />
-                </TasksProvider>
+                <EventsProvider>
+                  <FormEvent />
+                </EventsProvider>
               }
             />
             <Route
-              path="tasks/delete/:id"
+              path="events/delete/:id"
               element={
-                <TasksProvider>
-                  <Delete />
-                </TasksProvider>
+                <EventsProvider>
+                  <DeleteEvent />
+                </EventsProvider>
               }
             />
             <Route path="form" element={<Form />} />

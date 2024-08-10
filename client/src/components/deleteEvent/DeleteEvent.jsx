@@ -1,40 +1,40 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useTasks } from "../../contexts/TasksContext";
+import { useEvents } from "../../contexts/EventsContext";
 import { useEffect, useState } from "react";
+import styles from "./DeleteEvent.module.css";
 import Spinner from "../spinner/Spinner";
 import Button from "../button/Button";
-import styles from "./Delete.module.css";
 
-function Delete() {
+function DeleteEvent() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
-  const { deleteTask } = useTasks();
+  const { deleteEvent } = useEvents();
   const { id } = useParams();
-  const { getTask, isLoading, currentTask } = useTasks();
+  const { getEvent, isLoading, currentEvent } = useEvents();
 
   useEffect(
     function () {
-      async function getCurrentTask() {
-        await getTask(id);
+      async function getCurrentEvent() {
+        await getEvent(id);
       }
-      getCurrentTask();
+      getCurrentEvent();
     },
     [id],
   );
 
   useEffect(
     function () {
-      if (currentTask) {
-        setTitle(currentTask.title);
+      if (currentEvent) {
+        setTitle(currentEvent.title);
       }
     },
-    [currentTask],
+    [currentEvent],
   );
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await deleteTask(id);
-    navigate("/app/tasks");
+    await deleteEvent(id);
+    navigate("/app/events");
   }
 
   if (isLoading) return <Spinner />;
@@ -66,4 +66,4 @@ function Delete() {
   );
 }
 
-export default Delete;
+export default DeleteEvent;

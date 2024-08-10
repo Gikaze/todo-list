@@ -15,6 +15,14 @@ import { useUrLPosition } from "./../../hooks/useUrlPosition";
 import Button from "./../button/Button";
 import { useEvents } from "../../contexts/EventsContext";
 
+const formatDate = (date) =>
+  new Intl.DateTimeFormat("en", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    weekday: "long",
+  }).format(new Date(date));
+
 function Map() {
   const [userEvents, setUserEvents] = useState([]);
   const { events } = useEvents();
@@ -61,8 +69,6 @@ function Map() {
     [geolocationPosition],
   );
 
-  //if (!mapPosition) return;
-
   return (
     <div className={styles.mapContainer}>
       {!geolocationPosition && (
@@ -73,7 +79,7 @@ function Map() {
       <MapContainer
         center={mapPosition}
         //center={[mapLat, mapLng]}
-        zoom={6}
+        zoom={8}
         scrollWheelZoom={true}
         className={styles.map}
       >
@@ -91,8 +97,17 @@ function Map() {
               key={event.id}
             >
               <Popup>
-                <span>{event.location.flag}</span>
-                <span>{event.location.city}</span>
+                <div className={styles.row}>
+                  <h3>Date: {formatDate(event.startDate || null)}</h3>
+                  <h3>
+                    Time: {event.startTime} - {event.endTime}
+                  </h3>
+                  <span>{event.location.address}</span>
+                  <span>{event.location.city}</span>
+                  <span>
+                    {event.location.country} {event.location.flag}
+                  </span>
+                </div>
               </Popup>
             </Marker>
           ))}
