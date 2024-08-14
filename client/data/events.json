@@ -21,26 +21,6 @@
       "user": "669e6b2504f38b78341d0722"
     },
     {
-      "id": "66a89059cbf948cb7be66fa9",
-      "title": "Business Lunch",
-      "description": "Lunch with potential clients.",
-      "location": {
-        "address": "Potsdamer Platz",
-        "city": "Berlin",
-        "country": "Germany",
-        "flag": "🇩🇪",
-        "coordinates": [
-          52.5096,
-          13.3756
-        ]
-      },
-      "startDate": "2024-08-03",
-      "startTime": "12:30",
-      "endDate": "2024-08-03",
-      "endTime": "14:00",
-      "user": "669e5cc27cfc9e9c10a609b6"
-    },
-    {
       "id": "66a89059cbf948cb7be66faa",
       "title": "Gym Session",
       "description": "Cardio and strength training.",
@@ -65,13 +45,16 @@
       "title": "Conference Call.",
       "description": "Monthly update with the overseas team.",
       "location": {
-        "address": "Eiffel Tower",
+        "address": "Rue Villiot",
+        "houseNumber": "",
+        "postCode": "75012",
         "city": "Paris",
-        "country": "France",
-        "flag": "🇫🇷",
+        "state": "Île-de-France",
+        "country": "Frankreich",
+        "countryFlag": "🇫🇷",
         "coordinates": [
-          48.8584,
-          2.2945
+          48.84302835299519,
+          2.3675537109375004
         ]
       },
       "startDate": "2024-08-05",
@@ -105,13 +88,16 @@
       "title": "Project Deadline",
       "description": "Final submission of the project report.",
       "location": {
-        "address": "Sydney Opera House",
+        "address": "Poate Road",
+        "houseNumber": "",
+        "postCode": "2021",
         "city": "Sydney",
-        "country": "Australia",
-        "flag": "🇦🇺",
+        "state": "Neusüdwales",
+        "country": "Australien",
+        "countryFlag": "🇦🇺",
         "coordinates": [
-          -33.8568,
-          151.2153
+          -33.89093747081252,
+          151.22680664062503
         ]
       },
       "startDate": "2024-08-07",
@@ -165,13 +151,16 @@
       "title": "Yoga Class",
       "description": "Evening yoga session.",
       "location": {
-        "address": "Table Mountain",
-        "city": "Cape Town",
-        "country": "South Africa",
-        "flag": "🇿🇦",
+        "address": "Brommersvlei Road",
+        "houseNumber": "",
+        "postCode": "7735",
+        "city": "Kapstadt",
+        "state": "Westkap",
+        "country": "Südafrika",
+        "countryFlag": "🇿🇦",
         "coordinates": [
-          -33.9628,
-          18.4098
+          -34.00713506435885,
+          18.435058593750004
         ]
       },
       "startDate": "2024-08-13",
@@ -205,13 +194,16 @@
       "title": "Webinar",
       "description": "Online webinar on new technologies.",
       "location": {
-        "address": "Empire State Building",
+        "address": "2nd Avenue",
+        "houseNumber": "576",
+        "postCode": "10016",
         "city": "New York",
-        "country": "USA",
-        "flag": "🇺🇸",
+        "state": "New York",
+        "country": "Vereinigte Staaten von Amerika",
+        "countryFlag": "🇺🇸",
         "coordinates": [
-          40.7488,
-          -73.9857
+          40.74309523218185,
+          -73.97644042968751
         ]
       },
       "startDate": "2024-08-15",
@@ -239,6 +231,75 @@
       "endDate": "2024-08-16",
       "endTime": "17:00",
       "user": "669e6b2504f38b78341d0722"
+    },
+    {
+      "id": "64df6ebe-186d-4e86-84af-0af7e6d1a8af",
+      "title": "Test Title",
+      "description": "Test Description",
+      "startDate": "2024-08-15T22:00:00.000Z",
+      "endDate": "2024-08-17T22:00:00.000Z",
+      "startTime": "10:25",
+      "endTime": "15:55",
+      "location": {
+        "address": "Mirecourtstraße",
+        "houseNumber": "1",
+        "postCode": "53225",
+        "city": "Bonn",
+        "state": "Nordrhein-Westfalen",
+        "country": "Deutschland",
+        "countryFlag": "🇩🇪",
+        "coordinates": [
+          50.74340774029213,
+          7.118527126912629
+        ]
+      },
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "b6b5231d-d025-48ec-a5fb-ca759037510d",
+      "title": "Concert",
+      "description": "Richard Bona",
+      "startDate": "2024-08-14T22:00:00.000Z",
+      "endDate": "2024-08-14T22:00:00.000Z",
+      "startTime": "15:00",
+      "endTime": "18:30",
+      "location": {
+        "address": "Kurt-Schumacher Str",
+        "houseNumber": "78",
+        "postCode": " 56626",
+        "city": "Andernach",
+        "state": " Rheinland-Pfalz",
+        "country": " Deutschland",
+        "countryFlag": "",
+        "coordinates": [
+          50.4391924,
+          7.4023145
+        ]
+      },
+      "user": "669e5cc27cfc9e9c10a609b6"
+    },
+    {
+      "id": "f8f0f4b2-18de-43f0-8a25-3db5959129c5",
+      "title": "Second Title",
+      "description": "Second Description",
+      "startDate": "2024-08-19T22:00:00.000Z",
+      "endDate": "2024-08-20T22:00:00.000Z",
+      "startTime": "18:30",
+      "endTime": "20:30",
+      "location": {
+        "address": "Address",
+        "houseNumber": "",
+        "postCode": " 56743",
+        "city": "Mendig",
+        "state": " Rheinland-Pfalz",
+        "country": " Deutschland",
+        "countryFlag": "🇩🇪",
+        "coordinates": [
+          50.3720933,
+          7.2812427
+        ]
+      },
+      "user": "669e5cc27cfc9e9c10a609b6"
     }
   ]
 }

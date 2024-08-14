@@ -1,13 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEvents } from "../../contexts/EventsContext";
 import Spinner from "../spinner/Spinner";
-import styles from "./FormEvent.module.css";
+import styles from "./CreateEvent.module.css";
 import { useEffect, useState } from "react";
 import Button from "../button/Button";
 import DatePicker from "react-datepicker";
 import { useUrLPosition } from "../../hooks/useUrlPosition";
 import Message from "../message/Message";
-//import DatePicker from "react-datepicker";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -20,14 +20,10 @@ export function convertToEmoji(countryCode) {
 const BASE_URL = "https://nominatim.openstreetmap.org/reverse";
 const BASE_SEARCH_URL = "https://nominatim.openstreetmap.org/search";
 
-function FormEvent() {
+function CreateEvent() {
   const navigate = useNavigate();
-  const { updateEvent } = useEvents();
-  const { id } = useParams();
-  const { getEvent, currentEvent, isLoading } = useEvents();
-
+  const { createEvent, isLoading } = useEvents();
   const [lat, lng] = useUrLPosition();
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
@@ -41,41 +37,18 @@ function FormEvent() {
   const [endDate, setEndDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
 
   const [geoCodingError, setGeoCodingError] = useState("");
   const [isLoadingGeocoding, setIsLoadingGeoCoding] = useState(false);
+  const [user, setUser] = useState({});
+  const { currentUser } = useAuth();
 
   useEffect(
     function () {
-      async function getCurrentEvent() {
-        await getEvent(id);
-      }
-      getCurrentEvent();
+      if (currentUser) setUser(currentUser);
     },
-    [id],
+    [currentUser],
   );
-
-  useEffect(() => {
-    if (currentEvent && currentEvent.location) {
-      setTitle(currentEvent.title || "");
-      setDescription(currentEvent.description || "");
-      setAddress(currentEvent.location.address || "");
-      setHouseNumber(currentEvent.location.houseNumber || "");
-      setPostCode(currentEvent.location.postCode || "");
-      setState(currentEvent.location.state || "");
-      setCity(currentEvent.location.city || "");
-      setCountry(currentEvent.location.country || "");
-      setCountryFlag(currentEvent.location.countryFlag || "");
-      setLatitude(currentEvent.location.coordinates.at(0));
-      setLongitude(currentEvent.location.coordinates.at(1));
-      setStartDate(currentEvent.startDate || "");
-      setEndDate(currentEvent.endDate || "");
-      setStartTime(currentEvent.startTime || "");
-      setEndTime(currentEvent.endTime || "");
-    }
-  }, [currentEvent]);
 
   useEffect(
     function () {
@@ -140,6 +113,7 @@ function FormEvent() {
         countryFlag,
         coordinates: [Number(lat), Number(lng)],
       },
+      user: user.id,
     };
 
     if (!city) return;
@@ -188,20 +162,14 @@ function FormEvent() {
       );
     }
 
-    await updateEvent(id, data);
+    await createEvent(data);
 
     navigate("/app/events");
   }
 
   if (isLoading || isLoadingGeocoding) return <Spinner />;
 
-  if (!latitude && !longitude)
-    return <Message message="Edit the location by clicking on the map" />;
-
   if (geoCodingError) return <Message message={geoCodingError} />;
-
-  console.log(latitude, longitude);
-  console.log(lat, lng);
 
   return (
     <form
@@ -317,7 +285,7 @@ function FormEvent() {
       </div>
 
       <div className={styles.buttons}>
-        <Button type="secondary">save</Button>
+        <Button type="secondary">Create</Button>
         <Button
           onClick={(e) => {
             e.preventDefault();
@@ -332,4 +300,4 @@ function FormEvent() {
   );
 }
 
-export default FormEvent;
+export default CreateEvent;

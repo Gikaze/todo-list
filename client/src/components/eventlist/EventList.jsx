@@ -36,6 +36,7 @@ function EventList() {
 
   async function handleAddNewEvent(e) {
     e.preventDefault();
+    navigate("create");
   }
 
   if (isLoading) return <Spinner />;

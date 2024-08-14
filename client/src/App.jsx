@@ -20,6 +20,7 @@ import CreateTask from "./components/createTask/CreateTask";
 import FormEvent from "./components/formEvent/FormEvent";
 import DeleteTask from "./components/deleteTask/DeleteTask";
 import DeleteEvent from "./components/deleteEvent/DeleteEvent";
+import CreateEvent from "./components/createEvent/CreateEvent";
 
 function App() {
   return (
@@ -76,6 +77,14 @@ function App() {
               element={
                 <EventsProvider>
                   <EventList />
+                </EventsProvider>
+              }
+            />
+            <Route
+              path="events/create"
+              element={
+                <EventsProvider>
+                  <CreateEvent />
                 </EventsProvider>
               }
             />

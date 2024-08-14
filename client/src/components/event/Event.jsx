@@ -63,12 +63,15 @@ function Event() {
         </h3>
         <h2>Location</h2>
         <p>Address: {location.address}</p>
-        <p>City: {location.city}</p>
+        <p>
+          City:{" "}
+          {location.postCode
+            ? `${location.postCode}  ${location.city}`
+            : location.city}
+        </p>
         <p className={styles.country}>
           <span>Country:</span>
-          <span>
-            {location.country} {"   "} {location.flag}
-          </span>
+          <span>{`${location.country}  ${location.countryFlag}`}</span>
         </p>
       </div>
 

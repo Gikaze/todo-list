@@ -19,7 +19,8 @@ export function convertToEmoji(countryCode) {
   return String.fromCodePoint(...codePoints);
 }
 
-const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+//const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+const BASE_URL = "https://nominatim.openstreetmap.org/reverse";
 
 function Form() {
   const [lat, lng] = useUrLPosition();
@@ -40,18 +41,21 @@ function Form() {
           setIsLoadingGeoCoding(true);
           setGeoCodingError("");
           const res = await fetch(
-            `${BASE_URL}?latitude=${lat}&longitude=${lng}`,
+            //`${BASE_URL}?latitude=${lat}&longitude=${lng}`,
+            `${BASE_URL}?format=json&lat=${lat}&lon=${lng}&addressdetails=1`,
           );
           const data = await res.json();
 
-          if (!data.country && !data.city)
+          console.log(data);
+
+          if (!data.address /*&& !data.city*/)
             throw new Error(
               "That does not seems  to be a city. Please click somewhere else.",
             );
 
           setCityName(data.city || data.locality || "");
           setCountry(data.countryName);
-          setEmoji(convertToEmoji(data.countryCode));
+          //setEmoji(convertToEmoji(data.countryCode));
         } catch (err) {
           console.log(err);
           setGeoCodingError(err.message);

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   MapContainer,
@@ -127,8 +127,14 @@ function ChangeCenter({ position }) {
 
 function DetectClick() {
   const navigate = useNavigate();
+  const { id } = useParams();
   useMapEvents({
-    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
+    click: (e) =>
+      id
+        ? navigate(
+            `events/update/${id}?lat=${e.latlng.lat}&lng=${e.latlng.lng}`,
+          )
+        : navigate(`events/create?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
   });
   return null;
 }

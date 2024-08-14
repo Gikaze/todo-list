@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const BASE_URL = "http://localhost:5080";
 
@@ -44,6 +45,18 @@ function reducer(state, action) {
                 endDate: action.payload.data.endDate || event.endDate,
                 startTime: action.payload.data.startTime || event.startTime,
                 endTime: action.payload.data.endTime || event.endTime,
+                location: {
+                  address: action.payload.data.location.address,
+                  houseNumber: action.payload.data.location.houseNumber,
+                  postCode: action.payload.data.location.postCode,
+                  city: action.payload.data.location.city,
+                  state: action.payload.data.location.state,
+                  country: action.payload.data.location.country,
+                  countryFlag: action.payload.data.location.countryFlag,
+                  coordinates:
+                    action.payload.data.location.coordinates ||
+                    event.location.coordinates,
+                },
               },
         ),
       };
@@ -105,18 +118,30 @@ function EventsProvider({ children }) {
     }
   }
 
-  async function createEvent(newEvent) {
+  async function createEvent(data) {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/events`, {
+      const newEvent = {
+        id: uuidv4(),
+        title: data.title,
+        description: data.description,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        startTime: data.startTime,
+        endTime: data.endTime,
+        location: data.location,
+        user: data.user,
+      };
+
+      await fetch(`${BASE_URL}/events`, {
         method: "POST",
         body: JSON.stringify(newEvent),
         headers: {
           "Content-Type": "application/json",
         },
       });
-      const data = await res.json();
-      dispatch({ type: "event/created", payload: data });
+
+      dispatch({ type: "event/created", payload: newEvent });
     } catch (err) {
       dispatch({
         type: "rejected",

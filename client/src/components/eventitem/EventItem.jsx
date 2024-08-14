@@ -60,7 +60,7 @@ function EventItem({ event }) {
             <p className={styles.country}>
               <span>Country:</span>
               <span>
-                {location.country} {location.flag}
+                {location.country} {location.countryFlag}
               </span>
             </p>
           </div>
