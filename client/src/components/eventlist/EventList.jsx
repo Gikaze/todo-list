@@ -1,6 +1,5 @@
 /* eslint-disable */
 import Spinner from "./../spinner/Spinner";
-import TaskItem from "./../taskitem/TaskItem";
 import Message from "./../message/Message";
 import EventItem from "./../eventitem/EventItem";
 
@@ -28,7 +27,8 @@ function EventList() {
 
   useEffect(
     function () {
-      setUserEvents(events.filter((event) => event.user === user.id));
+      if (events.length > 0)
+        setUserEvents(events.filter((event) => event.user === user.id));
       //else return navigate("/login");
     },
     [events],
@@ -39,9 +39,9 @@ function EventList() {
     navigate("create");
   }
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || !userEvents.length) return <Spinner />;
 
-  if (!events.length) return <Message message="Add your first task" />;
+  if (!events.length) return <Message message="Add your first Event" />;
 
   return (
     <>

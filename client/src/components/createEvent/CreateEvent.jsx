@@ -22,7 +22,7 @@ const BASE_SEARCH_URL = "https://nominatim.openstreetmap.org/search";
 
 function CreateEvent() {
   const navigate = useNavigate();
-  const { createEvent, isLoading } = useEvents();
+  const { createEvent, isLoading, getEvents } = useEvents();
   const [lat, lng] = useUrLPosition();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -163,6 +163,8 @@ function CreateEvent() {
     }
 
     await createEvent(data);
+
+    await getEvents();
 
     navigate("/app/events");
   }

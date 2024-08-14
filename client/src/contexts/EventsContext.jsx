@@ -7,6 +7,7 @@ const EventsContext = createContext();
 
 const initialState = {
   events: [],
+  userEvents: [],
   isLoading: false,
   currentEvent: {},
   error: "",
@@ -102,6 +103,20 @@ function EventsProvider({ children }) {
     fetchEvents();
   }, []);
 
+  async function getEvents() {
+    dispatch({ type: "loading" });
+    try {
+      const res = await fetch(`${BASE_URL}/events`);
+      const data = await res.json();
+      dispatch({ type: "events/loaded", payload: data });
+    } catch (err) {
+      dispatch({
+        type: "rejected",
+        payload: `There was an error loading data: ${err.message}`,
+      });
+    }
+  }
+
   async function getEvent(id) {
     if (Number(id) === currentEvent.id) return;
 
@@ -193,6 +208,7 @@ function EventsProvider({ children }) {
         isLoading,
         currentEvent,
         error,
+        getEvents,
         getEvent,
         createEvent,
         deleteEvent,

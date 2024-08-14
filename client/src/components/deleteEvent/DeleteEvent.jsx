@@ -10,7 +10,7 @@ function DeleteEvent() {
   const [title, setTitle] = useState("");
   const { deleteEvent } = useEvents();
   const { id } = useParams();
-  const { getEvent, isLoading, currentEvent } = useEvents();
+  const { getEvent, isLoading, currentEvent, getEvents } = useEvents();
 
   useEffect(
     function () {
@@ -34,6 +34,7 @@ function DeleteEvent() {
   async function handleSubmit(e) {
     e.preventDefault();
     await deleteEvent(id);
+    await getEvents();
     navigate("/app/events");
   }
 

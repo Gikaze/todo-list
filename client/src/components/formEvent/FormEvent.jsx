@@ -24,7 +24,7 @@ function FormEvent() {
   const navigate = useNavigate();
   const { updateEvent } = useEvents();
   const { id } = useParams();
-  const { getEvent, currentEvent, isLoading } = useEvents();
+  const { getEvent, currentEvent, isLoading, getEvents } = useEvents();
 
   const [lat, lng] = useUrLPosition();
 
@@ -189,6 +189,8 @@ function FormEvent() {
     }
 
     await updateEvent(id, data);
+
+    await getEvents();
 
     navigate("/app/events");
   }

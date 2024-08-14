@@ -23,26 +23,18 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
+const user = {
+  id: "669e5cc27cfc9e9c10a609b6",
+  name: "Gilles",
+  email: "romyjeff@googlemail.com",
+  password: "pass1234",
+  avatar: "https://i.pravatar.cc/100?u=zz",
+};
+
 function Map() {
   const [userEvents, setUserEvents] = useState([]);
-  const { events } = useEvents();
+  const { events, getEvents } = useEvents();
   //const { user } = useAuth();
-
-  const user = {
-    id: "669e5cc27cfc9e9c10a609b6",
-    name: "Gilles",
-    email: "romyjeff@googlemail.com",
-    password: "pass1234",
-    avatar: "https://i.pravatar.cc/100?u=zz",
-  };
-
-  useEffect(
-    function () {
-      setUserEvents(events.filter((event) => event.user === user.id));
-      //else return navigate("/login");
-    },
-    [events],
-  );
 
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
@@ -53,6 +45,16 @@ function Map() {
   } = useGeolocation();
 
   const [mapLat, mapLng] = useUrLPosition();
+
+  useEffect(
+    function () {
+      getEvents();
+      if (events.length > 0)
+        setUserEvents(events.filter((event) => event.user === user.id));
+      //else return navigate("/login");
+    },
+    [events],
+  );
 
   useEffect(
     function () {
