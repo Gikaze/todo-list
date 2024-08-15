@@ -103,13 +103,6 @@
       "completed": true,
       "createdAt": "2024-07-22T14:36:21.671Z",
       "user": "669e5cc27cfc9e9c10a609b6"
-    },
-    {
-      "id": "63f2ac9d-3fe2-4622-b2b2-59d7b674711e",
-      "title": "test title",
-      "description": "test description",
-      "completed": false,
-      "createdAt": "1723209077438"
     }
   ]
 }

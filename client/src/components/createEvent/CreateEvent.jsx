@@ -63,7 +63,7 @@ function CreateEvent() {
           );
           const data = await res.json();
 
-          console.log(data.address);
+          //console.log(data.address);
 
           if (!data.address /*&& !data.city*/)
             throw new Error(
@@ -126,7 +126,7 @@ function CreateEvent() {
 
       if (!result) return;
 
-      console.log(result);
+      //console.log(result);
       data.location.coordinates = [
         Number(result[0].lat),
         Number(result[0].lon),

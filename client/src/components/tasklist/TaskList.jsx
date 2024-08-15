@@ -12,7 +12,7 @@ import Button from "../button/Button";
 function TaskList() {
   const [userTasks, setUserTasks] = useState([]);
   const { tasks, isLoading } = useTasks();
-  //const { user } = useAuth();
+  const { currentUser, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const user = {
@@ -25,8 +25,9 @@ function TaskList() {
 
   useEffect(
     function () {
-      setUserTasks(tasks.filter((task) => task.user === user.id));
-      //else return navigate("/login");
+      if (currentUser && isAuthenticated)
+        setUserTasks(tasks.filter((task) => task.user === currentUser.id));
+      else return navigate("/login");
     },
     [tasks],
   );
@@ -39,6 +40,8 @@ function TaskList() {
   if (isLoading) return <Spinner />;
 
   if (!tasks.length) return <Message message="Add your first task" />;
+
+  //console.log(currentUser);
 
   return (
     <>

@@ -19,14 +19,21 @@ const initialState = {
   users: [],
   isLoading: false,
   isAuthenticated: false,
-  currentUser: FAKE_USER,
+  currentUser: {},
   error: "",
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "login":
-      return { ...state, user: action.payload, isAuthenticated: true };
+      return { ...state, currentUser: action.payload, isAuthenticated: true };
+    case "register":
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+        currentUser: action.payload,
+        isAuthenticated: false,
+      };
     case "logout":
       return initialState;
     case "rejected":

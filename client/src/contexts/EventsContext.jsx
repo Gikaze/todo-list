@@ -7,7 +7,6 @@ const EventsContext = createContext();
 
 const initialState = {
   events: [],
-  userEvents: [],
   isLoading: false,
   currentEvent: {},
   error: "",

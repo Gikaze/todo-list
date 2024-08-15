@@ -90,9 +90,9 @@ function FormEvent() {
           );
           const data = await res.json();
 
-          console.log(data.address);
+          //console.log(data.address);
 
-          if (!data.address /*&& !data.city*/)
+          if (!data.address)
             throw new Error(
               "That does not seems  to be a city. Please click somewhere else.",
             );
@@ -152,7 +152,7 @@ function FormEvent() {
 
       if (!result) return;
 
-      console.log(result);
+      //console.log(result);
       data.location.coordinates = [
         Number(result[0].lat),
         Number(result[0].lon),
@@ -201,9 +201,6 @@ function FormEvent() {
     return <Message message="Edit the location by clicking on the map" />;
 
   if (geoCodingError) return <Message message={geoCodingError} />;
-
-  console.log(latitude, longitude);
-  console.log(lat, lng);
 
   return (
     <form

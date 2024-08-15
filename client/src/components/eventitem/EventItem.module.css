@@ -80,6 +80,12 @@
   align-items: center;
   gap: 10px;
 }
+
+.countryFlag {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji",
+    sans-serif;
+}
+
 .updateBtn:hover {
   background-color: var(--color-brand--2);
   /*color: var(--color-dark--1);*/

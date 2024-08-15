@@ -9,12 +9,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../button/Button";
 import styles from "./EventList.module.css";
-//import { useCities } from "../contexts/CitiesContext";
 
 function EventList() {
   const [userEvents, setUserEvents] = useState([]);
   const { events, isLoading } = useEvents();
-  //const { user } = useAuth();
+  const { currentUser, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const user = {
@@ -27,9 +26,9 @@ function EventList() {
 
   useEffect(
     function () {
-      if (events.length > 0)
-        setUserEvents(events.filter((event) => event.user === user.id));
-      //else return navigate("/login");
+      if (currentUser && isAuthenticated)
+        setUserEvents(events.filter((event) => event.user === currentUser.id));
+      else return navigate("/login");
     },
     [events],
   );
