@@ -16,8 +16,6 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Login Button clicked");
-    //console.log(email, password);
     if (email && password) await login(email, password);
   }
 

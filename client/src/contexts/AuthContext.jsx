@@ -1,8 +1,7 @@
-//import axios from "axios";
+import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 
-//import axios from "axios";
-
+/*
 const FAKE_USER = {
   id: "669e5cc27cfc9e9c10a609b6",
   name: "Gilles",
@@ -10,8 +9,8 @@ const FAKE_USER = {
   password: "pass1234",
   avatar: "https://i.pravatar.cc/100?u=zz",
 };
-
-//const LOGIN_URL = "http://localhost:3000/api/v1/users/login";
+*/
+const LOGIN_URL = "http://localhost:3000/api/v1/users/login";
 
 const AuthContext = createContext();
 
@@ -26,12 +25,16 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "login":
-      return { ...state, currentUser: action.payload, isAuthenticated: true };
+      return {
+        ...state,
+        currentUser: { id: action.payload._id, ...action.payload },
+        isAuthenticated: true,
+      };
     case "register":
       return {
         ...state,
-        users: [...state.users, action.payload],
-        currentUser: action.payload,
+        users: [...state.users, { id: action.payload._id, ...action.payload }],
+        currentUser: { id: action.payload._id, ...action.payload },
         isAuthenticated: false,
       };
     case "logout":
@@ -50,7 +53,7 @@ function AuthProvider({ children }) {
     initialState,
   );
 
-  /*async function login(email, password) {
+  async function login(email, password) {
     console.log(email, password);
 
     try {
@@ -61,15 +64,16 @@ function AuthProvider({ children }) {
           email,
           password,
         },
+        withCredentials: true,
       });
 
-      const data = await res.json();
+      const data = res.data;
 
       console.log(data);
 
-      if (res.data.status === "success") {
-        dispatch({ type: "login", payload: data.data });
-      }
+      if (data.status === "success") {
+        dispatch({ type: "login", payload: data.data.user });
+      } else throw new Error("Login failed");
     } catch (err) {
       dispatch({
         type: "rejected",
@@ -77,13 +81,13 @@ function AuthProvider({ children }) {
       });
     }
   }
-    */
 
+  /*
   function login(email, password) {
     if (email === FAKE_USER.email && password === FAKE_USER.password)
       dispatch({ type: "login", payload: FAKE_USER });
   }
-
+  */
   function logout() {
     dispatch({ type: "logout" });
   }

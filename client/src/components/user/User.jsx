@@ -15,7 +15,11 @@ const FAKE_USER = {
 function User() {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  //const user = FAKE_USER;
+
+  // Utilise la photo de l'utilisateur ou la photo par défaut
+  const userPhoto = currentUser.photo
+    ? `http://localhost:3000/img/users/${currentUser.photo}`
+    : "http://localhost:3000/img/users/default.jpg";
 
   function handleClick() {
     logout();
@@ -24,7 +28,7 @@ function User() {
 
   return (
     <div className={styles.user}>
-      <img src={currentUser.avatar} alt={currentUser.name} />
+      <img src={userPhoto} alt={currentUser.name} />
       <span>Welcome, {currentUser.name}</span>
       <button onClick={handleClick}>Logout</button>
     </div>
@@ -32,13 +36,3 @@ function User() {
 }
 
 export default User;
-
-/*
-CHALLENGE
-
-1) Add `AuthProvider` to `App.jsx`
-2) In the `Login.jsx` page, call `login()` from context
-3) Inside an effect, check whether `isAuthenticated === true`. If so, programatically navigate to `/app`
-4) In `User.js`, read and display logged in user from context (`user` object). Then include this component in `AppLayout.js`
-5) Handle logout button by calling `logout()` and navigating back to `/`
-*/
