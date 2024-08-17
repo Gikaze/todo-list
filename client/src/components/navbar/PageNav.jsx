@@ -23,9 +23,14 @@ function PageNav() {
               Logout
             </Button>
           ) : (
-            <NavLink to="/login" className={styles.ctaLink}>
-              Login
-            </NavLink>
+            <div className={styles.buttons}>
+              <NavLink to="/login" className={styles.ctaLink}>
+                Login
+              </NavLink>
+              <NavLink to="/register" className={styles.ctaLinkRegister}>
+                Register
+              </NavLink>
+            </div>
           )}
         </li>
       </ul>

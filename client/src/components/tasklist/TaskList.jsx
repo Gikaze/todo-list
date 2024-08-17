@@ -39,7 +39,15 @@ function TaskList() {
 
   if (isLoading) return <Spinner />;
 
-  if (!tasks.length) return <Message message="Add your first task" />;
+  if (!userTasks.length)
+    return (
+      <>
+        <Message message="Add your first Task" />
+        <Button type="secondary" onClick={handleAddNewTask}>
+          Add
+        </Button>
+      </>
+    );
 
   //console.log(currentUser);
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 /*
 const FAKE_USER = {
@@ -10,15 +10,15 @@ const FAKE_USER = {
   avatar: "https://i.pravatar.cc/100?u=zz",
 };
 */
-const LOGIN_URL = "http://localhost:3000/api/v1/users/login";
+const BASE_URL = "http://localhost:3000/api/v1/users";
 
 const AuthContext = createContext();
 
 const initialState = {
-  users: [],
+  currentUser: null,
+  token: null,
   isLoading: false,
   isAuthenticated: false,
-  currentUser: {},
   error: "",
 };
 
@@ -27,13 +27,13 @@ function reducer(state, action) {
     case "login":
       return {
         ...state,
-        currentUser: { id: action.payload._id, ...action.payload },
+        currentUser: { id: action.payload.user._id, ...action.payload.user },
+        token: action.payload.token,
         isAuthenticated: true,
       };
     case "register":
       return {
         ...state,
-        users: [...state.users, { id: action.payload._id, ...action.payload }],
         currentUser: { id: action.payload._id, ...action.payload },
         isAuthenticated: false,
       };
@@ -48,18 +48,28 @@ function reducer(state, action) {
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children }) {
-  const [{ users, isAuthenticated, currentUser, error }, dispatch] = useReducer(
+  const [{ isAuthenticated, currentUser, error }, dispatch] = useReducer(
     reducer,
     initialState,
   );
 
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (token && user) {
+      dispatch({ type: "login", payload: { user, token } });
+    } else {
+      dispatch({ type: "logout" });
+    }
+  }, []);
+
   async function login(email, password) {
-    console.log(email, password);
+    //console.log(email, password);
 
     try {
       const res = await axios({
         method: "POST",
-        url: LOGIN_URL,
+        url: `${BASE_URL}/login`,
         data: {
           email,
           password,
@@ -69,11 +79,37 @@ function AuthProvider({ children }) {
 
       const data = res.data;
 
+      if (data.status === "success") {
+        const { token, user } = data.data;
+
+        localStorage.setItem("authToken", token);
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        dispatch({ type: "login", payload: { user, token } });
+      } else throw new Error("Login failed");
+    } catch (err) {
+      dispatch({
+        type: "rejected",
+        payload: `There was an error while logging in: ${err.message}`,
+      });
+    }
+  }
+
+  async function register(credentials) {
+    try {
+      const res = await axios({
+        method: "POST",
+        url: `${BASE_URL}/signup`,
+        data: credentials,
+        withCredentials: true,
+      });
+
+      const data = res.data;
+
       console.log(data);
 
       if (data.status === "success") {
-        dispatch({ type: "login", payload: data.data.user });
-      } else throw new Error("Login failed");
+        dispatch({ type: "register", payload: data.data.user });
+      } else throw new Error("Register failed");
     } catch (err) {
       dispatch({
         type: "rejected",
@@ -89,17 +125,19 @@ function AuthProvider({ children }) {
   }
   */
   function logout() {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("currentUser");
     dispatch({ type: "logout" });
   }
 
   return (
     <AuthContext.Provider
       value={{
-        users,
         isAuthenticated,
         error,
         currentUser,
         login,
+        register,
         logout,
       }}
     >

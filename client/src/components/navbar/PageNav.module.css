@@ -32,3 +32,16 @@ a.ctaLink:visited {
   padding: 0.8rem 2rem;
   border-radius: 7px;
 }
+
+a.ctaLinkRegister:link,
+a.ctaLinkRegister:visited {
+  background-color: var(--color-brand--1);
+  color: var(--color-dark--0);
+  padding: 0.8rem 2rem;
+  border-radius: 7px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}

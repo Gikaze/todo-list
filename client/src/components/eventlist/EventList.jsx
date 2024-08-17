@@ -16,8 +16,6 @@ function EventList() {
   const { currentUser, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  
-
   useEffect(
     function () {
       if (currentUser && isAuthenticated)
@@ -32,9 +30,17 @@ function EventList() {
     navigate("create");
   }
 
-  if (isLoading || !userEvents.length) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
-  if (!events.length) return <Message message="Add your first Event" />;
+  if (!userEvents.length)
+    return (
+      <>
+        <Message message="Add your first Event by clicking on the map or by using the Add button" />
+        <Button type="primary" onClick={handleAddNewEvent}>
+          Add
+        </Button>
+      </>
+    );
 
   return (
     <>

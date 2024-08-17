@@ -7,6 +7,7 @@ import { TasksProvider } from "./contexts/TasksContext";
 import AppLayout from "./pages/layout/AppLayout";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 import Form from "./components/form/Form";
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route index element={<Homepage />} />
           <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="chatia" element={<ChatIA />} />
           <Route path="app" element={<AppLayout />}>
             <Route
