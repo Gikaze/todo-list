@@ -5,11 +5,12 @@ import { useAuth } from "./../../contexts/AuthContext";
 import Button from "./../../components/button/Button";
 import PageNav from "./../../components/navbar/PageNav";
 import styles from "./Register.module.css";
+import Message from "../../components/message/Message";
 
 function Register() {
   // PRE-FILL FOR DEV PURPOSES
 
-  const { register } = useAuth();
+  const { register, error } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +20,6 @@ function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    //if (email && password) await login(email, password);
 
     const userData = {
       name,
@@ -29,8 +29,11 @@ function Register() {
     };
 
     try {
-      await register(userData);
-      navigate("/login");
+      await register(userData, navigate);
+      setEmail("");
+      setName("");
+      setPassword("");
+      setPasswordConfirm("");
     } catch (err) {
       console.error("Registration failed:", err.message);
     }
@@ -81,6 +84,7 @@ function Register() {
         <div>
           <Button type="secondary">Register</Button>
         </div>
+        {error && <Message message={error} />}
       </form>
     </main>
   );

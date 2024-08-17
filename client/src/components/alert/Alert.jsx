@@ -1,10 +1,11 @@
-import styles from "./Alert.component.css";
+//import { useEffect } from "react";
+import styles from "./Alert.module.css";
 
 // eslint-disable-next-line react/prop-types
-function Alert({ type, msg }) {
+function Alert({ type, message }) {
   return (
     <div className={`${styles.alert} ${type ? `alert--${type}` : ""}`}>
-      {msg}
+      {message}
     </div>
   );
 }

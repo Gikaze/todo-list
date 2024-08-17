@@ -1,15 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-/*
-const FAKE_USER = {
-  id: "669e5cc27cfc9e9c10a609b6",
-  name: "Gilles",
-  email: "romyjeff@googlemail.com",
-  password: "pass1234",
-  avatar: "https://i.pravatar.cc/100?u=zz",
-};
-*/
 const BASE_URL = "http://localhost:3000/api/v1/users";
 
 const AuthContext = createContext();
@@ -30,12 +21,14 @@ function reducer(state, action) {
         currentUser: { id: action.payload.user._id, ...action.payload.user },
         token: action.payload.token,
         isAuthenticated: true,
+        error: "",
       };
     case "register":
       return {
         ...state,
         currentUser: { id: action.payload._id, ...action.payload },
         isAuthenticated: false,
+        error: "",
       };
     case "logout":
       return initialState;
@@ -64,8 +57,6 @@ function AuthProvider({ children }) {
   }, []);
 
   async function login(email, password) {
-    //console.log(email, password);
-
     try {
       const res = await axios({
         method: "POST",
@@ -85,16 +76,18 @@ function AuthProvider({ children }) {
         localStorage.setItem("authToken", token);
         localStorage.setItem("currentUser", JSON.stringify(user));
         dispatch({ type: "login", payload: { user, token } });
-      } else throw new Error("Login failed");
+      } else {
+        throw new Error("Login failed");
+      }
     } catch (err) {
       dispatch({
         type: "rejected",
-        payload: `There was an error while logging in: ${err.message}`,
+        payload: err.response.data.message,
       });
     }
   }
 
-  async function register(credentials) {
+  async function register(credentials, navigate) {
     try {
       const res = await axios({
         method: "POST",
@@ -109,12 +102,16 @@ function AuthProvider({ children }) {
 
       if (data.status === "success") {
         dispatch({ type: "register", payload: data.data.user });
-      } else throw new Error("Register failed");
+        navigate("/login");
+      } else {
+        throw new Error("Register failed");
+      }
     } catch (err) {
       dispatch({
         type: "rejected",
-        payload: `There was an error while logging in: ${err.message}`,
+        payload: err.response.data.message,
       });
+      navigate("/register");
     }
   }
 
