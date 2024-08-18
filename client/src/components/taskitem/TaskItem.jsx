@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 function TaskItem({ task }) {
   const { currentTask, completeTask } = useTasks();
-  const { id } = task;
+  const { _id: id } = task;
   const [title, setTitle] = useState("");
   const [completed, setCompleted] = useState(false);
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ function TaskItem({ task }) {
     <li>
       <Link
         className={`${styles.taskItem} ${
-          id === currentTask.id ? styles["taskItem--active"] : ""
+          id === currentTask._id ? styles["taskItem--active"] : ""
         }`}
         to={id}
       >

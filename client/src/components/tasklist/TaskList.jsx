@@ -58,7 +58,7 @@ function TaskList() {
       </div>
       <ul className={styles.taskList}>
         {userTasks.map((task) => (
-          <TaskItem task={task} key={task.id} />
+          <TaskItem task={task} key={task._id} />
         ))}
       </ul>
     </>

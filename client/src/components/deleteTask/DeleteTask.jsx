@@ -8,7 +8,7 @@ import styles from "./DeleteTask.module.css";
 function DeleteTask() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
-  const { deleteTask } = useTasks();
+  const { deleteTask, getTasks } = useTasks();
   const { id } = useParams();
   const { getTask, isLoading, currentTask } = useTasks();
 
@@ -34,6 +34,7 @@ function DeleteTask() {
   async function handleSubmit(e) {
     e.preventDefault();
     await deleteTask(id);
+    await getTasks();
     navigate("/app/tasks");
   }
 

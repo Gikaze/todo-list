@@ -1,7 +1,7 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { v4 as uuidv4 } from "uuid";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://localhost:3000/api/v1/tasks";
 
 const TasksContext = createContext();
 
@@ -17,23 +17,23 @@ function reducer(state, action) {
     case "loading":
       return { ...state, isLoading: true };
     case "tasks/loaded":
-      return { ...state, isLoading: false, tasks: action.payload };
+      return { ...state, isLoading: false, tasks: action.payload.data };
 
     case "task/loaded":
-      return { ...state, isLoading: false, currentTask: action.payload };
+      return { ...state, isLoading: false, currentTask: action.payload.data };
 
     case "task/created":
       return {
         ...state,
         isLoading: false,
-        tasks: [action.payload, ...state.tasks],
-        currentTask: action.payload,
+        tasks: [action.payload.data, ...state.tasks],
+        currentTask: action.payload.data,
       };
     case "task/deleted":
       return {
         ...state,
         isLoading: false,
-        tasks: [...state.tasks].filter((task) => task.id !== action.payload),
+        tasks: [...state.tasks].filter((task) => task._id !== action.payload),
         currentTask: {},
       };
     case "task/completed":
@@ -41,7 +41,7 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         tasks: [...state.tasks].map((task) =>
-          task.id !== action.payload.id
+          task._id !== action.payload.id
             ? task
             : { ...task, completed: action.payload.completed },
         ),
@@ -51,14 +51,14 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         tasks: [...state.tasks].map((task) =>
-          task.id !== action.payload.id
+          task._id !== action.payload.id
             ? task
             : {
                 ...task,
-                title: action.payload.data.title || task.title,
+                title: action.payload.userData.title || task.title,
                 description:
-                  action.payload.data.description || task.description,
-                completed: action.payload.data.completed || task.completed,
+                  action.payload.userData.description || task.description,
+                completed: action.payload.userData.completed || task.completed,
               },
         ),
       };
@@ -81,8 +81,13 @@ function TasksProvider({ children }) {
     async function fetchTasks() {
       dispatch({ type: "loading" });
       try {
-        const res = await fetch(`${BASE_URL}/tasks`);
-        const data = await res.json();
+        const res = await axios({
+          method: "GET",
+          url: BASE_URL,
+          withCredentials: true,
+        });
+
+        const data = res.data.data;
         dispatch({ type: "tasks/loaded", payload: data });
       } catch (err) {
         dispatch({
@@ -94,13 +99,36 @@ function TasksProvider({ children }) {
     fetchTasks();
   }, []);
 
+  async function getTasks() {
+    dispatch({ type: "loading" });
+    try {
+      const res = await axios({
+        method: "GET",
+        url: BASE_URL,
+        withCredentials: true,
+      });
+
+      const data = res.data.data;
+      dispatch({ type: "tasks/loaded", payload: data });
+    } catch (err) {
+      dispatch({
+        type: "rejected",
+        payload: `There was an error loading data: ${err.message}`,
+      });
+    }
+  }
+
   async function getTask(id) {
     if (Number(id) === currentTask.id) return;
 
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/tasks/${id}`);
-      const data = await res.json();
+      const res = await axios({
+        method: "GET",
+        url: `${BASE_URL}/${id}`,
+        withCredentials: true,
+      });
+      const data = res.data.data;
       dispatch({ type: "task/loaded", payload: data });
     } catch (err) {
       dispatch({
@@ -110,26 +138,29 @@ function TasksProvider({ children }) {
     }
   }
 
-  async function createTask(data) {
+  async function createTask(userData) {
     dispatch({ type: "loading" });
     try {
       const newTask = {
-        id: uuidv4(),
-        title: data.title,
-        description: data.description,
+        title: userData.title,
+        description: userData.description,
         completed: false,
-        createdAt: new Date().toISOString(),
-        user: data.user,
+        user: userData.user,
       };
-      await fetch(`${BASE_URL}/tasks`, {
+
+      const res = await axios({
         method: "POST",
-        body: JSON.stringify(newTask),
+        url: BASE_URL,
+        data: newTask,
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      dispatch({ type: "task/created", payload: newTask });
+      const data = res.data.data;
+
+      dispatch({ type: "task/created", payload: data });
     } catch (err) {
       dispatch({
         type: "rejected",
@@ -141,8 +172,10 @@ function TasksProvider({ children }) {
   async function deleteTask(id) {
     dispatch({ type: "loading" });
     try {
-      await fetch(`${BASE_URL}/tasks/${id}`, {
+      await axios({
         method: "DELETE",
+        url: `${BASE_URL}/${id}`,
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
@@ -160,12 +193,14 @@ function TasksProvider({ children }) {
   async function completeTask(id, completed) {
     dispatch({ type: "loading" });
     try {
-      await fetch(`${BASE_URL}/tasks/${id}`, {
+      await axios({
         method: "PATCH",
-        body: JSON.stringify({ completed }),
+        url: `${BASE_URL}/${id}`,
+        data: { completed },
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       });
 
       dispatch({
@@ -177,20 +212,21 @@ function TasksProvider({ children }) {
     }
   }
 
-  async function updateTask(id, data) {
+  async function updateTask(id, userData) {
     dispatch({ type: "loading" });
     try {
-      await fetch(`${BASE_URL}/tasks/${id}`, {
+      await axios({
         method: "PATCH",
-        body: JSON.stringify(data),
+        url: `${BASE_URL}/${id}`,
+        data: userData,
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       });
-
       dispatch({
         type: "task/updated",
-        payload: { id, data },
+        payload: { id, userData },
       });
     } catch (err) {
       console.log(err);
@@ -204,6 +240,7 @@ function TasksProvider({ children }) {
         isLoading,
         currentTask,
         error,
+        getTasks,
         getTask,
         createTask,
         completeTask,
