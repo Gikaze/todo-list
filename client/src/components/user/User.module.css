@@ -32,3 +32,21 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+
+@media (max-width: 868px) {
+  .user {
+    position: static;
+  }
+}
+
+@media (max-width: 668px) {
+  .user span {
+    display: none;
+  }
+}
+
+@media (max-width: 568px) {
+  .user img {
+    display: none;
+  }
+}

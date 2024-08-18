@@ -20,8 +20,6 @@ function Task() {
   const navigate = useNavigate();
   const [completed, setCompleted] = useState(false);
 
-  // TEMP DATA
-
   useEffect(
     function () {
       getTask(id);

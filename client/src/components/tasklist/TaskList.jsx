@@ -49,8 +49,6 @@ function TaskList() {
       </>
     );
 
-  //console.log(currentUser);
-
   return (
     <>
       <div className={styles.buttons}>

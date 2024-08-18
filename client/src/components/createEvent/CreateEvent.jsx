@@ -58,14 +58,11 @@ function CreateEvent() {
           setIsLoadingGeoCoding(true);
           setGeoCodingError("");
           const res = await fetch(
-            //`${BASE_URL}?latitude=${lat}&longitude=${lng}`,
             `${BASE_URL}?format=json&lat=${lat}&lon=${lng}&addressdetails=1`,
           );
           const data = await res.json();
 
-          //console.log(data.address);
-
-          if (!data.address /*&& !data.city*/)
+          if (!data.address)
             throw new Error(
               "That does not seems  to be a city. Please click somewhere else.",
             );
@@ -126,7 +123,6 @@ function CreateEvent() {
 
       if (!result) return;
 
-      //console.log(result);
       data.location.coordinates = [
         Number(result[0].lat),
         Number(result[0].lon),

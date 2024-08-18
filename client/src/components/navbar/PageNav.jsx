@@ -12,12 +12,6 @@ function PageNav() {
       <Logo />
       <ul>
         <li>
-          <NavLink to="/app">App</NavLink>
-        </li>
-        <li>
-          <NavLink to="/chatia">IA</NavLink>
-        </li>
-        <li>
           {isAuthenticated ? (
             <Button type="back" onClick={() => logout()}>
               Logout

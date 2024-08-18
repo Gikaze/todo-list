@@ -72,8 +72,6 @@ function reducer(state, action) {
 
 // eslint-disable-next-line react/prop-types
 function TasksProvider({ children }) {
-  // Using ContextApI with Reducer
-
   const [{ tasks, isLoading, currentTask, error }, dispatch] = useReducer(
     reducer,
     initialState,
@@ -130,7 +128,6 @@ function TasksProvider({ children }) {
           "Content-Type": "application/json",
         },
       });
-      //const data = await res.json();
 
       dispatch({ type: "task/created", payload: newTask });
     } catch (err) {

@@ -70,21 +70,7 @@ function Form() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (!cityName || !date) return;
-    /*
-    const newCity = {
-      cityName,
-      country,
-      emoji,
-      date,
-      notes,
-      position: { lat, lng },
-    };
-
-    await createCity(newCity);
-    navigate("/app/cities");
-    */
   }
 
   if (isLoadingGeocoding) return <Spinner />;

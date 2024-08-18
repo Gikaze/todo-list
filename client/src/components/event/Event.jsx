@@ -18,8 +18,6 @@ function Event() {
   const { getEvent, currentEvent, isLoading } = useEvents();
   const { id } = useParams();
   const navigate = useNavigate();
-
-  // TEMP DATA
   useEffect(
     function () {
       getEvent(id);

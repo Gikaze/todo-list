@@ -1,7 +1,10 @@
-import styles from "./Homepage.module.css";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import PageNav from "./../../components/navbar/PageNav";
+import styles from "./Homepage.module.css";
 
 export default function Homepage() {
+  const { isAuthenticated } = useAuth();
   return (
     <main className={styles.homepage}>
       <PageNav />
@@ -16,6 +19,9 @@ export default function Homepage() {
           locations. Never miss an important appointment and track your daily
           progress. Create simple tasks and detailed events with ease.
         </h2>
+        <Link to={isAuthenticated ? "/app/tasks" : "/login"} className="cta">
+          Start now
+        </Link>
       </section>
     </main>
   );

@@ -12,9 +12,30 @@
 
 .footer {
   margin-top: auto;
+  position: absolute;
+  bottom: 5px;
 }
 
 .copyright {
   font-size: 1.2rem;
   color: var(--color-light--1);
+}
+
+.appTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (max-width: 1048px) {
+  .sidebar {
+    flex: 1;
+  }
+}
+
+@media (max-width: 868px) {
+  .sidebar {
+    padding: 3rem 2rem 3.5rem 2rem;
+  }
 }

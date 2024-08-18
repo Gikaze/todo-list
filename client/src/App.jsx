@@ -15,7 +15,6 @@ import TaskList from "./components/tasklist/TaskList";
 import Task from "./components/task/Task";
 import EventList from "./components/eventlist/EventList";
 import Event from "./components/event/Event";
-import ChatIA from "./components/chatia/ChatIA";
 import FormTask from "./components/formTask/FormTask";
 import CreateTask from "./components/createTask/CreateTask";
 import FormEvent from "./components/formEvent/FormEvent";
@@ -31,7 +30,6 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="chatia" element={<ChatIA />} />
           <Route path="app" element={<AppLayout />}>
             <Route
               path="tasks"

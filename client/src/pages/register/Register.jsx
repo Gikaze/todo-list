@@ -8,8 +8,6 @@ import styles from "./Register.module.css";
 import Message from "../../components/message/Message";
 
 function Register() {
-  // PRE-FILL FOR DEV PURPOSES
-
   const { register, error } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
