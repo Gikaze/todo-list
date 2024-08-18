@@ -12,12 +12,6 @@ const taskRouter = require("./routes/taskRoutes");
 const eventRouter = require("./routes/eventRoutes");
 const locationRouter = require("./routes/locationRoutes");
 
-/*const tourRouter = require('./routes/tourRoutes');
-const userRouter = require('./routes/userRoutes');
-const reviewRouter = require('./routes/reviewRoutes');
-const bookingRouter = require('./routes/bookingRoutes');
-const viewRouter = require('./routes/viewRoutes');
-*/
 const app = express();
 
 app.use(

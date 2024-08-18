@@ -35,9 +35,25 @@ const eventSchema = new mongoose.Schema({
     required: [true, "Event must belong to a user"],
   },
   location: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Location",
-    required: [true, "Event must have a location"],
+    address: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
+    flag: {
+      type: String,
+    },
+    coordinates: {
+      type: [Number], // Array of numbers [latitude, longitude]
+      required: true,
+    },
   },
   createdAt: {
     type: Date,
