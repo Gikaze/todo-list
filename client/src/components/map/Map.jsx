@@ -26,7 +26,7 @@ const formatDate = (date) =>
 
 function Map() {
   const [userEvents, setUserEvents] = useState([]);
-  const { events } = useEvents();
+  const { events, getEvents } = useEvents();
   const { currentUser, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -46,11 +46,13 @@ function Map() {
         setUserEvents(events.filter((event) => event.user === currentUser.id));
       else return navigate("/login");
     },
-    [events],
+    [currentUser, events, isAuthenticated, navigate],
   );
 
   useEffect(
     function () {
+      getEvents();
+
       if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
     },
     [mapLat, mapLng],
@@ -89,7 +91,7 @@ function Map() {
                 event.location.coordinates.at(0),
                 event.location.coordinates.at(1),
               ]}
-              key={event.id}
+              key={event._id}
             >
               <Popup>
                 <div className={styles.row}>

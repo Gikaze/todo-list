@@ -1,7 +1,7 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { v4 as uuidv4 } from "uuid";
 
-const BASE_URL = "http://localhost:5080";
+const BASE_URL = "http://localhost:3000/api/v1/events";
 
 const EventsContext = createContext();
 
@@ -17,44 +17,44 @@ function reducer(state, action) {
     case "loading":
       return { ...state, isLoading: true };
     case "events/loaded":
-      return { ...state, isLoading: false, events: action.payload };
+      return { ...state, isLoading: false, events: action.payload.data };
 
     case "event/loaded":
-      return { ...state, isLoading: false, currentEvent: action.payload };
+      return { ...state, isLoading: false, currentEvent: action.payload.data };
 
     case "event/created":
       return {
         ...state,
         isLoading: false,
-        events: [...state.events, action.payload],
-        currentEvent: action.payload,
+        events: [action.payload.data, ...state.events],
+        currentEvent: action.payload.data,
       };
     case "event/updated":
       return {
         ...state,
         isLoading: false,
         events: [...state.events].map((event) =>
-          event.id !== action.payload.id
+          event._id !== action.payload.id
             ? event
             : {
                 ...event,
-                title: action.payload.data.title || event.title,
+                title: action.payload.userData.title || event.title,
                 description:
-                  action.payload.data.description || event.description,
-                startDate: action.payload.data.startDate || event.startDate,
-                endDate: action.payload.data.endDate || event.endDate,
-                startTime: action.payload.data.startTime || event.startTime,
-                endTime: action.payload.data.endTime || event.endTime,
+                  action.payload.userData.description || event.description,
+                startDate: action.payload.userData.startDate || event.startDate,
+                endDate: action.payload.userData.endDate || event.endDate,
+                startTime: action.payload.userData.startTime || event.startTime,
+                endTime: action.payload.userData.endTime || event.endTime,
                 location: {
-                  address: action.payload.data.location.address,
-                  houseNumber: action.payload.data.location.houseNumber,
-                  postCode: action.payload.data.location.postCode,
-                  city: action.payload.data.location.city,
-                  state: action.payload.data.location.state,
-                  country: action.payload.data.location.country,
-                  countryFlag: action.payload.data.location.countryFlag,
+                  address: action.payload.userData.location.address,
+                  houseNumber: action.payload.userData.location.houseNumber,
+                  postCode: action.payload.userData.location.postCode,
+                  city: action.payload.userData.location.city,
+                  state: action.payload.userData.location.state,
+                  country: action.payload.userData.location.country,
+                  countryFlag: action.payload.userData.location.countryFlag,
                   coordinates:
-                    action.payload.data.location.coordinates ||
+                    action.payload.userData.location.coordinates ||
                     event.location.coordinates,
                 },
               },
@@ -65,7 +65,7 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         events: [...state.events].filter(
-          (event) => event.id !== action.payload,
+          (event) => event._id !== action.payload,
         ),
         currentEvent: {},
       };
@@ -89,13 +89,18 @@ function EventsProvider({ children }) {
     async function fetchEvents() {
       dispatch({ type: "loading" });
       try {
-        const res = await fetch(`${BASE_URL}/events`);
-        const data = await res.json();
+        const res = await axios({
+          method: "GET",
+          url: BASE_URL,
+          withCredentials: true,
+        });
+
+        const data = res.data.data;
         dispatch({ type: "events/loaded", payload: data });
       } catch (err) {
         dispatch({
           type: "rejected",
-          payload: `There was an error loading data: ${err.message}`,
+          payload: err.response.data.message,
         });
       }
     }
@@ -105,13 +110,18 @@ function EventsProvider({ children }) {
   async function getEvents() {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/events`);
-      const data = await res.json();
+      const res = await axios({
+        method: "GET",
+        url: BASE_URL,
+        withCredentials: true,
+      });
+
+      const data = res.data.data;
       dispatch({ type: "events/loaded", payload: data });
     } catch (err) {
       dispatch({
         type: "rejected",
-        payload: `There was an error loading data: ${err.message}`,
+        payload: err.response.data.message,
       });
     }
   }
@@ -121,45 +131,52 @@ function EventsProvider({ children }) {
 
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/events/${id}`);
-      const data = await res.json();
+      const res = await axios({
+        method: "GET",
+        url: `${BASE_URL}/${id}`,
+        withCredentials: true,
+      });
+      const data = res.data.data;
       dispatch({ type: "event/loaded", payload: data });
     } catch (err) {
       dispatch({
         type: "rejected",
-        payload: `There was an error loading data: ${err.message}`,
+        payload: err.response.data.message,
       });
     }
   }
 
-  async function createEvent(data) {
+  async function createEvent(userData) {
     dispatch({ type: "loading" });
     try {
       const newEvent = {
-        id: uuidv4(),
-        title: data.title,
-        description: data.description,
-        startDate: data.startDate,
-        endDate: data.endDate,
-        startTime: data.startTime,
-        endTime: data.endTime,
-        location: data.location,
-        user: data.user,
+        title: userData.title,
+        description: userData.description,
+        startDate: userData.startDate,
+        endDate: userData.endDate,
+        startTime: userData.startTime,
+        endTime: userData.endTime,
+        location: userData.location,
+        user: userData.user,
       };
 
-      await fetch(`${BASE_URL}/events`, {
+      const res = await axios({
         method: "POST",
-        body: JSON.stringify(newEvent),
+        url: BASE_URL,
+        data: newEvent,
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      dispatch({ type: "event/created", payload: newEvent });
+      const data = res.data.data;
+
+      dispatch({ type: "event/created", payload: data });
     } catch (err) {
       dispatch({
         type: "rejected",
-        payload: `There was an error loading data: ${err.message}`,
+        payload: err.response.data.message,
       });
     }
   }
@@ -167,8 +184,13 @@ function EventsProvider({ children }) {
   async function deleteEvent(id) {
     dispatch({ type: "loading" });
     try {
-      await fetch(`${BASE_URL}/events/${id}`, {
+      await axios({
         method: "DELETE",
+        url: `${BASE_URL}/${id}`,
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       dispatch({
@@ -176,27 +198,35 @@ function EventsProvider({ children }) {
         payload: id,
       });
     } catch (err) {
-      console.log(err);
+      dispatch({
+        type: "rejected",
+        payload: err.response.data.message,
+      });
     }
   }
 
-  async function updateEvent(id, data) {
+  async function updateEvent(id, userData) {
     dispatch({ type: "loading" });
     try {
-      await fetch(`${BASE_URL}/events/${id}`, {
+      await axios({
         method: "PATCH",
-        body: JSON.stringify(data),
+        url: `${BASE_URL}/${id}`,
+        data: userData,
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       });
 
       dispatch({
         type: "event/updated",
-        payload: { id, data },
+        payload: { id, userData },
       });
     } catch (err) {
-      console.log(err);
+      dispatch({
+        type: "rejected",
+        payload: err.response.data.message,
+      });
     }
   }
 

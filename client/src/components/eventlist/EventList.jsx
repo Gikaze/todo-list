@@ -51,7 +51,7 @@ function EventList() {
       </div>
       <ul className={styles.eventList}>
         {userEvents.map((event) => (
-          <EventItem event={event} key={event.id} />
+          <EventItem event={event} key={event._id} />
         ))}
       </ul>
     </>

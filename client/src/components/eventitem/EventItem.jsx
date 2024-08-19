@@ -20,7 +20,7 @@ const formatDate = (date) =>
 
 function EventItem({ event }) {
   const { currentEvent } = useEvents();
-  const { id } = event;
+  const { _id: id } = event;
   const navigate = useNavigate();
   const { title, description, location, startDate, startTime, endTime } = event;
 
@@ -44,7 +44,7 @@ function EventItem({ event }) {
     <li>
       <Link
         className={`${styles.eventItem} ${
-          event.id === currentEvent.id ? styles["eventItem--active"] : ""
+          id === currentEvent._id ? styles["eventItem--active"] : ""
         }`}
         to={`${id}?lat=${event.location.coordinates.at(0)}&lng=${event.location.coordinates.at(1)}`}
       >

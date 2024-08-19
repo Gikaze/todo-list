@@ -15,14 +15,6 @@ function TaskList() {
   const { currentUser, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const user = {
-    id: "669e5cc27cfc9e9c10a609b6",
-    name: "Gilles",
-    email: "romyjeff@googlemail.com",
-    password: "pass1234",
-    avatar: "https://i.pravatar.cc/100?u=zz",
-  };
-
   useEffect(
     function () {
       if (currentUser && isAuthenticated)

@@ -92,7 +92,7 @@ function TasksProvider({ children }) {
       } catch (err) {
         dispatch({
           type: "rejected",
-          payload: `There was an error loading data: ${err.message}`,
+          payload: err.response.data.message,
         });
       }
     }
@@ -113,7 +113,7 @@ function TasksProvider({ children }) {
     } catch (err) {
       dispatch({
         type: "rejected",
-        payload: `There was an error loading data: ${err.message}`,
+        payload: err.response.data.message,
       });
     }
   }
@@ -133,7 +133,7 @@ function TasksProvider({ children }) {
     } catch (err) {
       dispatch({
         type: "rejected",
-        payload: `There was an error loading data: ${err.message}`,
+        payload: err.response.data.message,
       });
     }
   }
@@ -164,7 +164,7 @@ function TasksProvider({ children }) {
     } catch (err) {
       dispatch({
         type: "rejected",
-        payload: `There was an error loading data: ${err.message}`,
+        payload: err.response.data.message,
       });
     }
   }
@@ -186,7 +186,10 @@ function TasksProvider({ children }) {
         payload: id,
       });
     } catch (err) {
-      console.log(err);
+      dispatch({
+        type: "rejected",
+        payload: err.response.data.message,
+      });
     }
   }
 
@@ -208,7 +211,10 @@ function TasksProvider({ children }) {
         payload: { id, completed },
       });
     } catch (err) {
-      console.log(err);
+      dispatch({
+        type: "rejected",
+        payload: err.response.data.message,
+      });
     }
   }
 
@@ -229,7 +235,10 @@ function TasksProvider({ children }) {
         payload: { id, userData },
       });
     } catch (err) {
-      console.log(err);
+      dispatch({
+        type: "rejected",
+        payload: err.response.data.message,
+      });
     }
   }
 
